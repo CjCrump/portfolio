@@ -65,34 +65,89 @@ home section
 
 
 /* ==============
-skills section
+skills section (Flex pillars)
 ============== */
 
 #skills {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: black;
   color: white;
   margin: 0;
-}
-#skills ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 24px;
   align-items: center;
-  gap: 12px;
-  padding: 0;
-  margin: 20px 0 0;
-  list-style: none;
 }
 
-#skills li {
-  padding: 10px 14px;
+#skills h2 {
+  text-align: center;
+  margin: 0;
+}
+
+/* Row of pillars */
+.skills-row {
+  width: 100%;
+  max-width: 1100px;
+
+  display: flex;
+  justify-content: center; /* centers the whole row */
+  align-items: stretch;
+  gap: 16px;
+  flex-wrap: wrap; /* wraps nicely on smaller widths */
+  padding: 0 10px;
+}
+
+/* Each pillar */
+.skill {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  padding: 20px;
+  border: 1px solid #444;
+  background: black;
+
+  /* 3 columns on desktop, wrap as needed */
+  flex: 1 1 280px;
+  max-width: 360px;
+}
+
+/* Pillar header centered */
+.skill h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.1rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #555;
+}
+
+/* List stacked vertically (not pills across the row) */
+.skill ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* List items centered */
+.skill li {
+  padding: 10px 12px;
   border: 1px solid #ddd;
-  font-size: 0.95rem;
   background: white;
   color: black;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Mobile: keep it clean */
+@media (max-width: 700px) {
+  .skills-row {
+    gap: 12px;
+  }
+
+  .skill {
+    max-width: 100%;
+  }
 }
 
 /* ===============
@@ -130,19 +185,19 @@ services section
 projects section
 ================ */
 
-#projects {
+#demos {
   gap: 40px;
   background: black;
 }
 
-#projects h2 {
+#demos h2 {
   color: white;
   text-align: center;
 }
 
 /* Project Card Layout */
 
-.project-card {
+.demos-card {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -154,18 +209,18 @@ projects section
 
 /* Project Text */
 
-.project-card h3 {
+.demos-card h3 {
   margin: 0;
 }
 
 
-.project-description {
+.demos-description {
   color: black;
 }
 
 /* Tech Stack */
 
-.project-tech {
+.demos-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -174,7 +229,7 @@ projects section
   margin: 0;
 }
 
-.project-tech li {
+.demos-tech li {
   background: black;
   color: white;
   padding: 6px 10px;
@@ -183,27 +238,144 @@ projects section
 
 /* Project Links */
 
-.project-links {
+.demos-links {
   display: flex;
   gap: 12px;
   margin-top: 8px;
 }
 
-.project-links a {
+.demos-links a {
   text-decoration: none;
   padding: 8px 16px;
   border: 1px solid #222;
   color: black;
 }
 
-.project-links a:hover {
+.demos-links a:hover {
   background: black;
   color: white;
+}
+
+/* ==============
+Educational Content
+================ */
+
+#content {
+  gap: 18px;
+  background: white;
+  color: black;
+}
+
+#content h2 {
+  text-align: center;
+}
+
+.content-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content-card {
+  border: 1px solid #ddd;
+  padding: 18px;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content-card h3 {
+  margin: 0;
+}
+
+.content-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #fff;
+  font-size: 0.85rem;
+}
+
+.pill-muted {
+  opacity: 0.75;
+}
+
+.content-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.content-link {
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #fff;
+  color: white;
+}
+
+.content-link:hover {
+  background: white;
+  color: black;
+}
+
+.content-link.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.content-footer {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.content-primary {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid #222;
+  text-decoration: none;
+  color: black;
+}
+
+.content-primary:hover {
+  background: black;
+  color: white;
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* contact section */
 
 #contact {
+  background: black;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;

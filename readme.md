@@ -48,3 +48,15 @@ The site is designed to be:
 ├── style.css       # Site styling (Flexbox-based layout)
 ├── script.js       # JavaScript for interactivity and validation
 └── README.md
+
+<div class="video-embed">
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
