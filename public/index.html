@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ChanceIT Studio — Custom Software & Web Development</title>
-<meta name="description" content="ChanceIT Studio builds custom web apps, SaaS tools, mobile calculators, and dispatch systems for small businesses. Based in Illinois.">
+<meta name="description" content="ChanceIT Studio builds custom web apps, SaaS tools, dispatch systems, and workflow automation for small businesses. Based in Illinois.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -33,7 +33,6 @@ body {
   overflow-x: hidden;
 }
 
-/* grain */
 body::before {
   content:''; position:fixed; inset:0; pointer-events:none; z-index:999; opacity:.28;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.05'/%3E%3C/svg%3E");
@@ -49,8 +48,8 @@ nav {
 }
 nav.scrolled { border-color:var(--border); background:rgba(8,8,10,.96); backdrop-filter:blur(18px); }
 
-.nav-logo { display:flex; align-items:center; gap:.65rem; text-decoration:none; }
-.logo-svg  { height:28px; width:auto; flex-shrink:0; }
+.nav-logo { display:flex; align-items:center; gap:.5rem; text-decoration:none; }
+.logo-img  { height:44px; width:auto; flex-shrink:0; }
 .logo-sub  { font-family:'DM Mono',monospace; font-size:.57rem; color:var(--muted2); letter-spacing:.16em; text-transform:uppercase; }
 
 .nav-links { display:flex; gap:2rem; list-style:none; }
@@ -135,7 +134,6 @@ nav.scrolled { border-color:var(--border); background:rgba(8,8,10,.96); backdrop
 .btn-outline { padding:.8rem 1.7rem; border:1px solid var(--b2); color:var(--muted2); }
 .btn-outline:hover { border-color:var(--white); color:var(--white); }
 
-/* terminal */
 .hero-right { opacity:0; animation:fadeIn .8s ease .9s forwards; }
 .terminal { background:var(--surface); border:1px solid var(--b2); border-radius:8px; overflow:hidden; }
 .t-bar { display:flex; align-items:center; gap:.45rem; padding:.6rem 1rem; background:var(--border); }
@@ -190,18 +188,36 @@ section { padding:6rem 2.5rem; }
   display:grid; grid-template-columns:repeat(2,1fr);
   gap:1.5px; background:var(--border); border:1px solid var(--border); margin-top:3rem;
 }
+/* clickable card base */
 .wcard {
   background:var(--bg); padding:2.4rem;
   display:flex; flex-direction:column; gap:.9rem;
-  position:relative; overflow:hidden; transition:background .25s;
+  position:relative; overflow:hidden;
   text-decoration:none; color:inherit;
 }
-.wcard:hover { background:var(--surface); }
-.wcard::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; transition:height .35s ease; }
-.wcard.g::before  { background:var(--green); }
-.wcard.o::before  { background:var(--orange); }
-.wcard.l::before  { background:var(--lime); }
-.wcard:hover::before { height:100%; }
+a.wcard { transition:background .25s; cursor:pointer; }
+a.wcard:hover { background:var(--surface); }
+a.wcard::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; transition:height .35s ease; }
+a.wcard.g::before { background:var(--green); }
+a.wcard.l::before { background:var(--lime); }
+a.wcard:hover::before { height:100%; }
+a.wcard.g:hover .wcard-arrow { color:var(--green); transform:translate(3px,-3px); }
+a.wcard.l:hover .wcard-arrow { color:var(--lime);  transform:translate(3px,-3px); }
+
+/* coming soon card — div, not interactive */
+div.wcard {
+  opacity:.42;
+  cursor:default;
+}
+div.wcard.o::before { display:none; }
+
+.soon-badge {
+  font-family:'DM Mono',monospace; font-size:.56rem; letter-spacing:.12em; text-transform:uppercase;
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.2rem .6rem; border:1px solid var(--b2); color:var(--muted);
+  align-self:flex-start;
+}
+.soon-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--orange); display:inline-block; flex-shrink:0; }
 
 .wcard-tag { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; display:inline-block; padding:.22rem .55rem; align-self:flex-start; }
 .wcard.g .wcard-tag { color:var(--green);  background:rgba(0,255,157,.06); }
@@ -209,16 +225,12 @@ section { padding:6rem 2.5rem; }
 .wcard.l .wcard-tag { color:var(--lime);   background:rgba(200,255,0,.06); }
 
 .wcard-title { font-size:1.22rem; font-weight:700; color:var(--white); line-height:1.2; }
-.wcard-link { text-decoration: none;}
 .wcard-desc  { font-size:.86rem; line-height:1.78; color:var(--muted2); flex:1; }
 .wcard-foot  { display:flex; justify-content:space-between; align-items:center; margin-top:.3rem; }
 .wcard-stack { display:flex; gap:.35rem; flex-wrap:wrap; }
 .wcard-stack span { font-family:'DM Mono',monospace; font-size:.57rem; color:var(--muted); border:1px solid var(--border); padding:.15rem .4rem; }
 .wcard-arrow { font-size:1rem; color:var(--muted); transition:color .2s,transform .2s; }
-.wcard:hover .wcard-arrow { transform:translate(3px,-3px); }
-.wcard.g:hover .wcard-arrow { color:var(--green); }
-.wcard.o:hover .wcard-arrow { color:var(--orange); }
-.wcard.l:hover .wcard-arrow { color:var(--lime); }
+.wcard-soon-label { font-family:'DM Mono',monospace; font-size:.6rem; color:var(--muted); letter-spacing:.08em; }
 
 /* ── SERVICES ── */
 #services { background:var(--surface); }
@@ -308,23 +320,9 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
 <!-- ══ NAV ══ -->
 <nav id="nav">
   <a href="#home" class="nav-logo">
-    <svg class="logo-svg" viewBox="0 0 180 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ChanceIT Studio">
-      <!-- C — rounded serif C matching the brand mark -->
-      <text x="2" y="50" font-family="'Bebas Neue',sans-serif" font-size="54" fill="#eeeeff">C</text>
-      <!-- [ left bracket -->
-      <rect x="52" y="3"  width="5"  height="50" fill="#00ff9d"/>
-      <rect x="52" y="3"  width="16" height="5"  fill="#00ff9d"/>
-      <rect x="52" y="48" width="16" height="5"  fill="#00ff9d"/>
-      <!-- IT -->
-      <text x="70" y="50" font-family="'Bebas Neue',sans-serif" font-size="54" fill="#eeeeff">IT</text>
-      <!-- ] right bracket -->
-      <rect x="138" y="3"  width="5"  height="50" fill="#00ff9d"/>
-      <rect x="123" y="3"  width="20" height="5"  fill="#00ff9d"/>
-      <rect x="123" y="48" width="20" height="5"  fill="#00ff9d"/>
-      <!-- cursor pointer — integrated bottom-right, small -->
-      <g transform="translate(150,32) scale(0.52)">
-        <polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="#00ff9d"/>
-      </g>
+    <img src="CIT2kwhitegreen.png" alt="ChanceIT Studio" class="logo-img">
+    <svg width="7" height="10" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;margin-left:-2px;margin-bottom:-4px;">
+      <polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="#ffffff"/>
     </svg>
     <span class="logo-sub">Studio</span>
   </a>
@@ -346,9 +344,9 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <div class="hero-left">
     <div class="hero-eyebrow">Solo Developer · Illinois</div>
     <h1 class="hero-name">CHANCE<br><span class="g">CRUMP</span></h1>
-    <p class="hero-role">Web Development · Custom Software · Real Results</p>
+    <p class="hero-role">Web Development · Workflow Automation · Real Results</p>
     <p class="hero-bio">
-      Got a workflow held together with spreadsheets and text messages? A business idea that needs to actually exist? A job site problem nobody's built a tool for yet? I build the software that fixes it — web apps, mobile tools, dispatch systems, and SaaS platforms built around how you actually work.
+      Spending more time managing your process than running your business? I build the software that fixes it — turning manual text chains into automated dispatches, paper forms into digital workflows, and missed revenue into money on the books. Web apps, mobile tools, SaaS platforms, and custom automation built around how you actually work.
     </p>
     <div class="hero-cta">
       <a href="#contact" class="btn btn-green">Start a Project</a>
@@ -365,8 +363,8 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
       <div class="t-body">
         <div><span class="tp">→</span> <span class="tc">git push origin main</span></div>
         <div class="to">  Writing objects: 100% (5/5)</div>
-        <div><span class="tok">  ✓ Netlify deploy live</span></div>
-        <div class="to">  chanceit.netlify.app</div>
+        <div><span class="tok">  ✓ Cloudflare deploy live</span></div>
+        <div class="to">  chanceitstudio.com</div>
         <div>&nbsp;</div>
         <div><span class="tp">→</span> <span class="tc">node scripts/migrate.js</span></div>
         <div class="to">  Running 3 pending migrations...</div>
@@ -383,7 +381,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
 <!-- ══ STRIP ══ -->
 <div class="strip">
   <div class="strip-cell"><div class="snum">4</div><div class="slabel">Projects Shipped</div></div>
-  <div class="strip-cell"><div class="snum">2</div><div class="slabel">SaaS Platforms</div></div>
+  <div class="strip-cell"><div class="snum">1</div><div class="slabel">SaaS Platform</div></div>
   <div class="strip-cell"><div class="snum">100<em>%</em></div><div class="slabel">Custom Code</div></div>
   <div class="strip-cell"><div class="snum">0</div><div class="slabel">Page Builders</div></div>
 </div>
@@ -395,13 +393,13 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <div class="about-grid">
     <div class="about-text reveal">
       <p>
-        I'm Chance Crump — a self-taught developer and solo entrepreneur building practical software out of Illinois. I started with HTML, CSS, and JavaScript, went deep on the fundamentals, and kept building until the projects got real: a dice roller built for the table, a concrete calculator built for job sites, a SaaS platform with Stripe billing, and a real-time dispatch app for contractors.
+        I'm Chance Crump — a journeyman laborer, lifelong tech enthusiast, and self-taught developer out of Illinois. My best friend showed me how to swap a GPU freshman year of high school, and I've been hooked ever since. Now at 34, I'm channeling that same drive into building software that helps people actually get ahead.
       </p>
       <p>
-        I'll be straight — good software today is a team effort between a developer and the tools available. What I bring is judgment: knowing what to build, how to structure it so it lasts, what a real user needs when they're standing on a job site, and how to get it across the finish line. The collaboration is part of the process. The results are what count.
+        Every project has been a lesson. TTDice started as a local dice roller and grew into a full session tracker with shareable rolls and real-time party play. A concrete calculator turned into GlovesOn — a complete jobsite companion with a materials calculator, unit converter, time log, OT tracking, and notes. TCMVP started as a scheduling app and became a full transaction coordinator platform with contract parsing, automated reminders, and Stripe billing. SmokeSignal started as one scheduler's text-message problem and is now a dispatch platform capable of managing hundreds of crew assignments at once.
       </p>
       <p>
-        My goal is to help businesses and professionals who need software built around how they actually work — not a template that almost fits, not another subscription that does 80% of what you need. Something specific, useful, and done.
+        Building runs in my blood. My goal is to bring that same energy to businesses that are ready to stop doing manually what a well-built tool should handle — and bring everyone up with me.
       </p>
     </div>
     <div class="skill-table reveal">
@@ -409,8 +407,8 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
       <div class="skill-row"><span class="skill-name">Backend</span><div class="skill-chips"><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">REST APIs</span></div></div>
       <div class="skill-row"><span class="skill-name">Payments</span><div class="skill-chips"><span class="chip">Stripe</span><span class="chip">Webhooks</span><span class="chip">Subscriptions</span></div></div>
       <div class="skill-row"><span class="skill-name">Real-Time</span><div class="skill-chips"><span class="chip">WebSockets</span><span class="chip">Live Updates</span></div></div>
-      <div class="skill-row"><span class="skill-name">Deployment</span><div class="skill-chips"><span class="chip">Netlify</span><span class="chip">Git</span><span class="chip">GitHub</span></div></div>
-      <div class="skill-row"><span class="skill-name">Game Servers</span><div class="skill-chips"><span class="chip">Linux</span><span class="chip">Server Config</span><span class="chip">Hosting</span></div></div>
+      <div class="skill-row"><span class="skill-name">Deployment</span><div class="skill-chips"><span class="chip">Cloudflare</span><span class="chip">Netlify</span><span class="chip">Git</span><span class="chip">GitHub</span></div></div>
+      <div class="skill-row"><span class="skill-name">Automation</span><div class="skill-chips"><span class="chip">Workflows</span><span class="chip">Parsing</span><span class="chip">Integrations</span></div></div>
     </div>
   </div>
 </section>
@@ -421,50 +419,51 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <h2 class="sh reveal">Built and<br>shipped.</h2>
   <div class="work-grid">
 
-    <div class="wcard g reveal">
-      <a class="wcard-link" href="https://tcmvp.com">
+    <!-- 1. TCMVP -->
+    <a class="wcard g reveal" href="https://tcmvp.com" target="_blank" rel="noopener">
       <span class="wcard-tag">SaaS · Real Estate</span>
       <div class="wcard-title">TCMVP — Transaction Coordinator Platform</div>
-      <p class="wcard-desc">A SaaS platform for real estate transaction coordinators to track deadlines, manage documents, and automate workflow hand-offs across deals. Stripe billing, PostgreSQL backend, full auth — replacing tools that cost 4–5x more at $14.99/mo.</p>
+      <p class="wcard-desc">Real estate transaction coordinators juggle dozens of deals across spreadsheets and sticky notes. TCMVP replaces that with a proper platform: deadline tracking, document management, automated team reminders, and PDF contract parsing that pulls critical dates with a confidence score — so nothing slips through the cracks. Stripe billing, PostgreSQL backend, full auth. Priced at $14.99/mo, replacing tools that cost 4–5× more.</p>
       <div class="wcard-foot">
-        <div class="wcard-stack"><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span><span>HTML/CSS/JS</span></div>
+        <div class="wcard-stack"><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span><span>Cloudflare</span></div>
         <div class="wcard-arrow">↗</div>
       </div>
-      </a>
-    </div>
+    </a>
 
-    <div class="wcard o reveal">
-      <span class="wcard-tag">Dispatch · Contractors</span>
-      <div class="wcard-title">SmokeSignal — Field Dispatch & Crew Coordination</div>
-      <p class="wcard-desc">A real-time dispatch app for contractors managing crews across multiple remote locations. Sends location info, job assignments, and status updates so the office and the field always have the same picture — built on WebSockets so nothing lags.</p>
-      <div class="wcard-foot">
-        <div class="wcard-stack"><span>React</span><span>WebSockets</span><span>Node.js</span></div>
-        <div class="wcard-arrow">↗</div>
-      </div>
-    </div>
-
-    <div class="wcard l reveal">
-      <a class="wcard-link" href="https://gloveson.chanceitstudio.com">
+    <!-- 2. GlovesOn -->
+    <a class="wcard l reveal" href="https://gloveson.chanceitstudio.com" target="_blank" rel="noopener">
       <span class="wcard-tag">Mobile Tool · Trades</span>
       <div class="wcard-title">GlovesOn — Jobsite Companion</div>
-      <p class="wcard-desc">A mobile-first application built for the jobsite. Calculator and unit converter to keep you building precise. Daily log tracks your hours and a notebook is always handy. Works Offline, No Account, Data stays on your device.</p>
+      <p class="wcard-desc">A mobile-first PWA built for crews in the field — big buttons, glove-friendly, works offline. Includes a full materials calculator (concrete, rock, sand, asphalt — slab, footing, column, and more), an engineer-to-tape-measure unit converter, a daily time log with OT rules and pay period tracking, and a freeform notes tool. No account required. All data stays on the device.</p>
       <div class="wcard-foot">
-        <div class="wcard-stack"><span>HTML5</span><span>CSS3</span><span>Vanilla JS</span><span>Mobile-first</span></div>
+        <div class="wcard-stack"><span>HTML5</span><span>CSS3</span><span>Vanilla JS</span><span>PWA</span></div>
         <div class="wcard-arrow">↗</div>
       </div>
-      </a>
-    </div>
+    </a>
 
-    <div class="wcard g reveal">
-      <a class="wcard-link" href="https://ttdice.chanceitstudio.com">
+    <!-- 3. TTDice -->
+    <a class="wcard g reveal" href="https://ttdice.chanceitstudio.com" target="_blank" rel="noopener">
       <span class="wcard-tag">Web App · Tabletop</span>
       <div class="wcard-title">TTDice — Tabletop Dice Roller</div>
-      <p class="wcard-desc">A clean, fast dice roller for tabletop RPGs and board games. Rolls standard and custom die combinations, tracks results per session, and stays out of your way so you can focus on the game. Built to actually be used at the table.</p>
+      <p class="wcard-desc">A fast, clean dice roller for tabletop RPGs built to actually get used at the table. Rolls all standard die types including d100, tracks session stats, supports saved presets for common combinations like attack rolls and spell damage, and uses the browser's CSPRNG for provably fair randomness. Natural 20s and 1s get their own callout. Optional Supabase logging for community stats.</p>
       <div class="wcard-foot">
-        <div class="wcard-stack"><span>HTML5</span><span>CSS3</span><span>Vanilla JS</span></div>
+        <div class="wcard-stack"><span>HTML5</span><span>CSS3</span><span>Vanilla JS</span><span>Supabase</span></div>
         <div class="wcard-arrow">↗</div>
       </div>
-      </a>
+    </a>
+
+    <!-- 4. SmokeSignal — Coming Soon (div, not a link) -->
+    <div class="wcard o reveal">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;">
+        <span class="wcard-tag">Dispatch · Contractors</span>
+        <span class="soon-badge">In Testing</span>
+      </div>
+      <div class="wcard-title">SmokeSignal — Field Dispatch & Crew Coordination</div>
+      <p class="wcard-desc">Replacing group texts and phone-tag with a real dispatch system. Schedulers create jobs, assign crew by trade, and send structured notifications — job title, location link, start time, chief contact — in one tap. Built on WebSockets so the field and the office are always on the same page. Currently live with its first client, managing crews across multiple remote sites simultaneously.</p>
+      <div class="wcard-foot">
+        <div class="wcard-stack"><span>Vanilla JS</span><span>WebSockets</span><span>Supabase</span><span>Twilio</span></div>
+        <div class="wcard-soon-label">Coming Soon</div>
+      </div>
     </div>
 
   </div>
@@ -478,32 +477,32 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
     <div class="svc reveal">
       <div class="svc-num">01</div>
       <div class="svc-name">Custom Web Applications</div>
-      <p class="svc-desc">Auth, billing, dashboards, and real working logic. Built to match how you actually work, not adapted from a template that almost fits.</p>
+      <p class="svc-desc">Auth, billing, dashboards, and real business logic. Built to match how your operation actually runs, not adapted from a template that almost fits.</p>
     </div>
     <div class="svc reveal">
       <div class="svc-num">02</div>
       <div class="svc-name">Business Sites & Landing Pages</div>
-      <p class="svc-desc">Fast, clean, hand-coded pages — not a drag-and-drop builder with a monthly subscription. Yours to own, built to load, built to convert.</p>
+      <p class="svc-desc">Fast, clean, hand-coded pages — not a drag-and-drop builder with a monthly fee attached. Yours to own, built to load, built to convert.</p>
     </div>
     <div class="svc reveal">
       <div class="svc-num">03</div>
-      <div class="svc-name">Site Maitnance & Hosting</div>
-      <p class="svc-desc">Dont have time to upload new content, want to keep your website moving as quickly as you do? I will host and maintain your website keeping visitors up to date with you.</p>
+      <div class="svc-name">Site Maintenance & Hosting</div>
+      <p class="svc-desc">No time to keep your site current? I'll host and maintain it for you — content updates, performance, and uptime — so your site moves as fast as your business does.</p>
     </div>
     <div class="svc reveal">
       <div class="svc-num">04</div>
-      <div class="svc-name">Custom System Builds</div>
-      <p class="svc-desc">Windows, Linux, Raspberry Pi, desktop or server distros, you give me a budget and use case and I build and configure your system and hand you the keys. </p>
+      <div class="svc-name">Workflow Automation</div>
+      <p class="svc-desc">Manual processes are expensive. I'll map your current workflow — phone calls, spreadsheets, paper forms — and build the system that eliminates the bottleneck and captures revenue you're currently leaving on the table.</p>
     </div>
     <div class="svc reveal">
       <div class="svc-num">05</div>
-      <div class="svc-name">Game Server Setup</div>
-      <p class="svc-desc">Need a dedicated server for your game community? I'll configure it, harden it, and hand you the keys. Linux-based, stable, done right from the start.</p>
+      <div class="svc-name">Custom System Builds</div>
+      <p class="svc-desc">Windows, Linux, Raspberry Pi — desktop or server. Give me a budget and a use case, and I'll build, configure, and hand you the keys to a system that does exactly what you need.</p>
     </div>
     <div class="svc reveal">
       <div class="svc-num">06</div>
-      <div class="svc-name">Performance & Code Audits & Workflow Automation</div>
-      <p class="svc-desc">Slow site? Broken workflow? I'll go through what you have or show me your current workflow, find what's actually slowing you down, and give you a plain-English diagnosis before we talk solutions.</p>
+      <div class="svc-name">Performance & Code Audits</div>
+      <p class="svc-desc">Slow site? Broken workflow? I'll dig into what you have, find what's actually holding you back, and give you a plain-English diagnosis before we talk solutions. No jargon, no upsell.</p>
     </div>
   </div>
 </section>
@@ -517,7 +516,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
       <div class="pnum">01</div>
       <div>
         <div class="pname">Discovery Call — 30 min, no charge</div>
-        <p class="pdesc">Tell me what you're trying to fix. I'll ask the right questions, dig into the actual problem (not just the symptom), and be straight with you about what makes sense to build. No pitch, no pressure, no commitment.</p>
+        <p class="pdesc">Tell me what you're trying to fix. I'll ask the right questions, get into the actual problem (not just the symptom), and be straight with you about what makes sense to build. No pitch, no pressure, no commitment.</p>
       </div>
     </div>
     <div class="pitem reveal">
@@ -531,7 +530,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
       <div class="pnum">03</div>
       <div>
         <div class="pname">Build & Review — working software, not wireframes</div>
-        <p class="pdesc">You see real, running software at each stage — not mockups you have to imagine. Give feedback on something you can actually click and break. That's how you know it'll work when it ships.</p>
+        <p class="pdesc">You see real, running software at each stage — not mockups you have to imagine. Give feedback on something you can actually click and use. That's how you know it'll work when it ships.</p>
       </div>
     </div>
     <div class="pitem reveal">
@@ -550,10 +549,10 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <div class="contact-wrap">
     <div class="contact-left reveal">
       <h2 class="sh">Let's build<br>something real.</h2>
-      <p>Got a problem that needs software? Fill out the form or reach out directly. I respond within one business day — usually the same day.</p>
+      <p>Got a process that needs to be faster, a tool that needs to exist, or a workflow that's costing you time and money? Fill out the form or reach out directly. I respond within one business day — usually the same day.</p>
       <div class="contact-links">
         <a href="https://github.com/CjCrump" target="_blank" class="clink">GitHub — CjCrump</a>
-        <a href="mailto:hello@chanceit.dev" class="clink">hello@chanceit.dev</a>
+        <a href="https://www.facebook.com/ChanceITstudio/" class="clink">Facebook</a>
         <a href="https://chanceitstudio.com" target="_blank" class="clink">chanceitstudio.com</a>
       </div>
     </div>
@@ -575,27 +574,20 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
 <!-- ══ FOOTER ══ -->
 <footer>
   <a href="#home" class="nav-logo" style="opacity:.65">
-    <svg class="logo-svg" viewBox="0 0 180 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:20px" aria-label="ChanceIT Studio">
-      <text x="2" y="50" font-family="'Bebas Neue',sans-serif" font-size="54" fill="#eeeeff">C</text>
-      <rect x="52" y="3"  width="5"  height="50" fill="#00ff9d"/>
-      <rect x="52" y="3"  width="16" height="5"  fill="#00ff9d"/>
-      <rect x="52" y="48" width="16" height="5"  fill="#00ff9d"/>
-      <text x="70" y="50" font-family="'Bebas Neue',sans-serif" font-size="54" fill="#eeeeff">IT</text>
-      <rect x="138" y="3"  width="5"  height="50" fill="#00ff9d"/>
-      <rect x="123" y="3"  width="20" height="5"  fill="#00ff9d"/>
-      <rect x="123" y="48" width="20" height="5"  fill="#00ff9d"/>
-      <g transform="translate(150,32) scale(0.52)"><polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="#00ff9d"/></g>
+    <img src="CIT2kwhitegreen.png" alt="ChanceIT Studio" class="logo-img">
+    <svg width="7" height="10" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;margin-left:-2px;margin-bottom:-3px;">
+      <polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="#ffffff"/>
     </svg>
   </a>
   <div class="footer-copy">© 2026 ChanceIT Studio — Built in Illinois.</div>
   <ul class="footer-links">
     <li><a href="https://github.com/CjCrump" target="_blank">GitHub</a></li>
-    <li><a href="mailto:hello@chanceit.dev">Email</a></li>
+    <li><a href="https://www.facebook.com/ChanceITstudio/">Facebook</a></li>
     <li><a href="https://chanceitstudio.com" target="_blank">chanceitstudio.com</a></li>
   </ul>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
 
