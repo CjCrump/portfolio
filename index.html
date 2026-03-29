@@ -556,15 +556,36 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
         <a href="https://chanceitstudio.com" target="_blank" class="clink">chanceitstudio.com</a>
       </div>
     </div>
-    <form class="cform reveal" id="cform" method="POST" action="/contact">
-      <input type="hidden" name="bot-field" class="honeypot">
+    <form class="cform reveal" id="cform" novalidate>
+      <!-- Web3Forms access key — replace with yours from web3forms.com -->
+      <input type="hidden" name="access_key" value="75aa6456-ed71-45be-a4ba-6037b67505bd">
+      <input type="hidden" name="subject" value="New Lead — ChanceIT Studio">
+      <input type="hidden" name="from_name" value="ChanceIT Studio Contact Form">
+      <input type="hidden" name="redirect" value="false">
+
+      <!-- Honeypot: hidden from humans, bots fill it, submission dies -->
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
       <div class="form-row">
-        <div class="field"><label>Name</label><input type="text" name="name" placeholder="Jane Smith" required></div>
-        <div class="field"><label>Email</label><input type="email" name="email" placeholder="jane@company.com" required></div>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input type="text" id="f-name" name="name" placeholder="Jane Smith"
+            autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" placeholder="jane@company.com"
+            autocomplete="email" maxlength="200" required>
+        </div>
       </div>
-      <div class="field"><label>What do you need built?</label><textarea name="message" placeholder="Describe the problem. The messier the better — I like a challenge." required></textarea></div>
+      <div class="field">
+        <label for="f-msg">What do you need built?</label>
+        <textarea id="f-msg" name="message"
+          placeholder="Describe the problem. The messier the better — I like a challenge."
+          maxlength="3000" required></textarea>
+      </div>
       <div class="form-foot">
-        <button type="submit" class="btn btn-green">Send It →</button>
+        <button type="submit" class="btn btn-green" id="fsubmit">Send It →</button>
         <span id="fstatus"></span>
       </div>
     </form>
@@ -587,10 +608,12 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+/* ── NAV SCROLL ── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
 
+/* ── SCROLL REVEAL ── */
 const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -601,27 +624,106 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-const form = document.getElementById('cform');
-const status = document.getElementById('fstatus');
-const hp = form.querySelector('[name="bot-field"]');
-form.addEventListener('submit', e => {
+/* ── CONTACT FORM — Web3Forms + spam protection ── */
+const form     = document.getElementById('cform');
+const status   = document.getElementById('fstatus');
+const btn      = document.getElementById('fsubmit');
+
+// Track when the page loaded so we can measure time-on-page before submit
+const pageLoadTime = Date.now();
+
+// Rate-limit: track submission timestamps in sessionStorage
+function getSubmitLog() {
+  try { return JSON.parse(sessionStorage.getItem('_cit_sl') || '[]'); }
+  catch { return []; }
+}
+function recordSubmit() {
+  const log = getSubmitLog();
+  log.push(Date.now());
+  // Keep only last 5
+  sessionStorage.setItem('_cit_sl', JSON.stringify(log.slice(-5)));
+}
+function tooManySubmits() {
+  const log = getSubmitLog();
+  const oneHour = 60 * 60 * 1000;
+  const recent = log.filter(t => Date.now() - t < oneHour);
+  return recent.length >= 3; // max 3 per hour per session
+}
+
+function setStatus(msg, isError) {
+  status.textContent = msg;
+  status.style.color = isError ? 'var(--orange)' : 'var(--green)';
+  status.style.opacity = '1';
+  if (!isError) setTimeout(() => { status.style.opacity = '0'; }, 6000);
+}
+
+form.addEventListener('submit', async e => {
   e.preventDefault();
-  if (hp.value) return;
-  const btn = form.querySelector('button');
+
+  // 1. Honeypot check — bots fill this, humans never see it
+  if (form.querySelector('[name="botcheck"]').checked) return;
+
+  // 2. Time-on-page check — real users take > 3 seconds to fill a form
+  if (Date.now() - pageLoadTime < 3000) return;
+
+  // 3. Session rate limit
+  if (tooManySubmits()) {
+    setStatus('✕ Too many submissions. Try again later.', true);
+    return;
+  }
+
+  // 4. Basic field sanity — strip and re-validate
+  const nameVal  = form.querySelector('[name="name"]').value.trim();
+  const emailVal = form.querySelector('[name="email"]').value.trim();
+  const msgVal   = form.querySelector('[name="message"]').value.trim();
+
+  if (!nameVal || !emailVal || !msgVal) {
+    setStatus('✕ Please fill in all fields.', true);
+    return;
+  }
+
+  // 5. Rudimentary email format check
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailVal)) {
+    setStatus('✕ Check your email address.', true);
+    return;
+  }
+
+  // 6. Message must be at least 20 chars — weeds out single-word spam
+  if (msgVal.length < 20) {
+    setStatus('✕ Tell me a bit more about your project.', true);
+    return;
+  }
+
+  // All checks passed — submit
   btn.disabled = true;
-  fetch('/contact', { method:'POST', body:new FormData(form) })
-    .then(() => {
-      status.textContent = '✓ Sent. Talk soon.';
-      status.style.opacity = '1';
+  btn.textContent = 'Sending…';
+
+  try {
+    const formData = new FormData(form);
+    // Override with trimmed values
+    formData.set('name',    nameVal);
+    formData.set('email',   emailVal);
+    formData.set('message', msgVal);
+
+    const res  = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const json = await res.json();
+
+    if (json.success) {
+      recordSubmit();
+      setStatus('✓ Sent. I\'ll be in touch soon.', false);
       form.reset();
-      setTimeout(() => status.style.opacity = '0', 5000);
-    })
-    .catch(() => {
-      status.style.color = 'var(--orange)';
-      status.textContent = '✕ Something went wrong. Try again.';
-      status.style.opacity = '1';
-    })
-    .finally(() => btn.disabled = false);
+    } else {
+      setStatus('✕ Something went wrong. Try again.', true);
+    }
+  } catch {
+    setStatus('✕ Network error. Check your connection.', true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send It →';
+  }
 });
 </script>
 </body>
