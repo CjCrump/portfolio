@@ -209,6 +209,7 @@ section { padding:6rem 2.5rem; }
 .wcard.l .wcard-tag { color:var(--lime);   background:rgba(200,255,0,.06); }
 
 .wcard-title { font-size:1.22rem; font-weight:700; color:var(--white); line-height:1.2; }
+.wcard-link { text-decoration: none;}
 .wcard-desc  { font-size:.86rem; line-height:1.78; color:var(--muted2); flex:1; }
 .wcard-foot  { display:flex; justify-content:space-between; align-items:center; margin-top:.3rem; }
 .wcard-stack { display:flex; gap:.35rem; flex-wrap:wrap; }
@@ -394,13 +395,13 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <div class="about-grid">
     <div class="about-text reveal">
       <p>
-        I'm Chance Crump — a self-taught developer and solo entrepreneur building practical software out of Illinois. I started with HTML, CSS, and JavaScript, went deep on the fundamentals, and kept building until the projects got real: a SaaS platform with Stripe billing, a real-time dispatch app for contractors, a concrete calculator built for job sites, and a dice roller built for the table.
+        I'm Chance Crump — a self-taught developer and solo entrepreneur building practical software out of Illinois. I started with HTML, CSS, and JavaScript, went deep on the fundamentals, and kept building until the projects got real: a dice roller built for the table, a concrete calculator built for job sites, a SaaS platform with Stripe billing, and a real-time dispatch app for contractors.
       </p>
       <p>
         I'll be straight — good software today is a team effort between a developer and the tools available. What I bring is judgment: knowing what to build, how to structure it so it lasts, what a real user needs when they're standing on a job site, and how to get it across the finish line. The collaboration is part of the process. The results are what count.
       </p>
       <p>
-        My focus is small businesses and solo operators who need software built around how they actually work — not a template that almost fits, not another subscription that does 80% of what you need. Something specific, useful, and done.
+        My goal is to help businesses and professionals who need software built around how they actually work — not a template that almost fits, not another subscription that does 80% of what you need. Something specific, useful, and done.
       </p>
     </div>
     <div class="skill-table reveal">
@@ -421,13 +422,15 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <div class="work-grid">
 
     <div class="wcard g reveal">
+      <a class="wcard-link" href="https://tcmvp.com">
       <span class="wcard-tag">SaaS · Real Estate</span>
       <div class="wcard-title">TCMVP — Transaction Coordinator Platform</div>
-      <p class="wcard-desc">A SaaS platform for real estate transaction coordinators to track deadlines, manage documents, and automate workflow hand-offs across deals. Stripe billing, PostgreSQL backend, full auth — replacing tools that cost 4–5x more at $19/mo.</p>
+      <p class="wcard-desc">A SaaS platform for real estate transaction coordinators to track deadlines, manage documents, and automate workflow hand-offs across deals. Stripe billing, PostgreSQL backend, full auth — replacing tools that cost 4–5x more at $14.99/mo.</p>
       <div class="wcard-foot">
         <div class="wcard-stack"><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span><span>HTML/CSS/JS</span></div>
         <div class="wcard-arrow">↗</div>
       </div>
+      </a>
     </div>
 
     <div class="wcard o reveal">
@@ -441,6 +444,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
     </div>
 
     <div class="wcard l reveal">
+      <a class="wcard-link" href="https://gloveson.chanceitstudio.com">
       <span class="wcard-tag">Mobile Tool · Trades</span>
       <div class="wcard-title">GlovesOn — Concrete Calculator</div>
       <p class="wcard-desc">A mobile-first concrete calculator and unit converter built for use on the job site — gloves on, phone in hand. Quick inputs, instant results, no account required. Covers the volume calculations and conversions that come up constantly in concrete and masonry work.</p>
@@ -448,9 +452,11 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
         <div class="wcard-stack"><span>HTML5</span><span>CSS3</span><span>Vanilla JS</span><span>Mobile-first</span></div>
         <div class="wcard-arrow">↗</div>
       </div>
+      </a>
     </div>
 
     <div class="wcard g reveal">
+      <a class="wcard-link" href="https://ttdice.chanceitstudio.com">
       <span class="wcard-tag">Web App · Tabletop</span>
       <div class="wcard-title">TTDice — Tabletop Dice Roller</div>
       <p class="wcard-desc">A clean, fast dice roller for tabletop RPGs and board games. Rolls standard and custom die combinations, tracks results per session, and stays out of your way so you can focus on the game. Built to actually be used at the table.</p>
@@ -458,6 +464,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
         <div class="wcard-stack"><span>HTML5</span><span>CSS3</span><span>Vanilla JS</span></div>
         <div class="wcard-arrow">↗</div>
       </div>
+      </a>
     </div>
 
   </div>
@@ -470,7 +477,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <div class="svc-grid">
     <div class="svc reveal">
       <div class="svc-num">01</div>
-      <div class="svc-name">Web Apps & SaaS Platforms</div>
+      <div class="svc-name">Web Applications</div>
       <p class="svc-desc">Auth, billing, dashboards, and real business logic. Built to match how your business actually works, not adapted from a template that almost fits.</p>
     </div>
     <div class="svc reveal">
@@ -547,11 +554,10 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
       <div class="contact-links">
         <a href="https://github.com/CjCrump" target="_blank" class="clink">GitHub — CjCrump</a>
         <a href="mailto:hello@chanceit.dev" class="clink">hello@chanceit.dev</a>
-        <a href="https://chanceit.netlify.app" target="_blank" class="clink">chanceit.netlify.app</a>
+        <a href="https://chanceitstudio.com" target="_blank" class="clink">chanceitstudio.com</a>
       </div>
     </div>
-    <form class="cform reveal" id="cform" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="contact">
+    <form class="cform reveal" id="cform" method="POST" action="/contact">
       <input type="hidden" name="bot-field" class="honeypot">
       <div class="form-row">
         <div class="field"><label>Name</label><input type="text" name="name" placeholder="Jane Smith" required></div>
@@ -585,7 +591,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
   <ul class="footer-links">
     <li><a href="https://github.com/CjCrump" target="_blank">GitHub</a></li>
     <li><a href="mailto:hello@chanceit.dev">Email</a></li>
-    <li><a href="https://chanceit.netlify.app" target="_blank">Live Site</a></li>
+    <li><a href="https://chanceitstudio.com" target="_blank">chanceitstudio.com</a></li>
   </ul>
 </footer>
 
@@ -611,7 +617,7 @@ form.addEventListener('submit', e => {
   if (hp.value) return;
   const btn = form.querySelector('button');
   btn.disabled = true;
-  fetch('/', { method:'POST', body:new FormData(form) })
+  fetch('/contact', { method:'POST', body:new FormData(form) })
     .then(() => {
       status.textContent = '✓ Sent. Talk soon.';
       status.style.opacity = '1';

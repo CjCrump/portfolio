@@ -1,0 +1,9 @@
+name = "chanceitstudio"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./public"
+
+[[send_email]]
+name = "CONTACT_MAILER"
+destination_address = "chance@chanceitstudio.com"
