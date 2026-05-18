@@ -3,8 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ChanceIT Studio — Custom Software & Web Development</title>
-<meta name="description" content="ChanceIT Studio builds custom web apps, SaaS tools, dispatch systems, and workflow automation for small businesses. Based in Illinois.">
+<title>Chance IT Studio — Custom Web Apps & Workflow Automation | Illinois</title>
+<meta name="description" content="Chance IT Studio builds custom web apps, SaaS platforms, dispatch systems, and workflow automation for small businesses. Solo developer based in Illinois. No templates — real software built around how you work.">
+<meta name="keywords" content="custom web development, workflow automation, SaaS development, web apps Illinois, small business software, custom software developer, dispatch system, construction software">
+<meta name="author" content="Chance Crump">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://chanceitstudio.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chanceitstudio.com/">
+<meta property="og:title" content="Chance IT Studio — Custom Web Apps & Workflow Automation">
+<meta property="og:description" content="I build custom web apps, SaaS platforms, and workflow automation for small businesses. Real software built around how you work — not a template that almost fits.">
+<meta property="og:image" content="https://chanceitstudio.com/CIT-black-bg.png">
+<meta property="og:site_name" content="Chance IT Studio">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://chanceitstudio.com/">
+<meta name="twitter:title" content="Chance IT Studio — Custom Web Apps & Workflow Automation">
+<meta name="twitter:description" content="I build custom web apps, SaaS platforms, and workflow automation for small businesses. Real software built around how you work.">
+<meta name="twitter:image" content="https://chanceitstudio.com/CIT-black-bg.png">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Chance IT Studio",
+  "url": "https://chanceitstudio.com",
+  "logo": "https://chanceitstudio.com/CIT-black-bg.png",
+  "image": "https://chanceitstudio.com/CIT-black-bg.png",
+  "description": "Custom web apps, SaaS platforms, dispatch systems, and workflow automation for small businesses. Based in Illinois.",
+  "founder": {
+    "@type": "Person",
+    "name": "Chance Crump",
+    "jobTitle": "Web Developer & Software Engineer"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "IL",
+    "addressCountry": "US"
+  },
+  "areaServed": "US",
+  "serviceType": [
+    "Custom Web Application Development",
+    "Workflow Automation",
+    "SaaS Development",
+    "Business Websites",
+    "Site Maintenance and Hosting",
+    "Custom System Builds"
+  ],
+  "sameAs": [
+    "https://github.com/CjCrump",
+    "https://www.facebook.com/ChanceITstudio/"
+  ]
+}
+</script>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="icon" type="image/svg+xml" href="cit-fav.svg" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Bebas+Neue&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -12,18 +70,42 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  /* dark mode (default) */
   --bg:      #08080a;
   --surface: #101014;
   --s2:      #17171e;
   --border:  #1e1e28;
   --b2:      #2a2a38;
-  --green:   #00ff9d;
+  --green:   #00cc7a;
   --orange:  #ff6b35;
-  --lime:    #c8ff00;
+  --lime:    #8db800;
   --muted:   #48485f;
   --muted2:  #6a6a84;
   --text:    #c4c4d8;
   --white:   #eeeeff;
+  --nav-scrolled-bg: rgba(8,8,10,.96);
+  --cursor-color: #ffffff;
+  --logo-src: url("CIT-black-bg.png");
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:      #f4f4f0;
+    --surface: #e8e8e3;
+    --s2:      #e0e0db;
+    --border:  #d0d0ca;
+    --b2:      #b8b8b0;
+    --green:   #00995c;
+    --orange:  #d94f1e;
+    --lime:    #6b8a00;
+    --muted:   #888880;
+    --muted2:  #666660;
+    --text:    #2a2a28;
+    --white:   #111110;
+    --nav-scrolled-bg: rgba(244,244,240,.96);
+    --cursor-color: #111110;
+    --logo-src: url("CIT-white-bg.png");
+  }
 }
 
 html { scroll-behavior: smooth; }
@@ -47,7 +129,7 @@ nav {
   border-bottom:1px solid transparent;
   transition:border-color .3s,background .3s;
 }
-nav.scrolled { border-color:var(--border); background:rgba(8,8,10,.96); backdrop-filter:blur(18px); }
+nav.scrolled { border-color:var(--border); background:var(--nav-scrolled-bg); backdrop-filter:blur(18px); }
 
 .nav-logo { display:flex; align-items:center; gap:.5rem; text-decoration:none; }
 .logo-img  { height:44px; width:auto; flex-shrink:0; }
@@ -78,7 +160,7 @@ nav.scrolled { border-color:var(--border); background:rgba(8,8,10,.96); backdrop
 }
 .hero-glow {
   position:absolute; top:-15%; right:-5%; width:680px; height:680px; pointer-events:none;
-  background:radial-gradient(circle,rgba(0,255,157,.045) 0%,transparent 65%);
+  background:radial-gradient(circle,rgba(0,180,100,.06) 0%,transparent 65%);
 }
 .hero-wm {
   position:absolute; right:-3%; top:50%; transform:translateY(-50%);
@@ -200,10 +282,12 @@ a.wcard { transition:background .25s; cursor:pointer; }
 a.wcard:hover { background:var(--surface); }
 a.wcard::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; transition:height .35s ease; }
 a.wcard.g::before { background:var(--green); }
+a.wcard.o::before { background:var(--orange); }
 a.wcard.l::before { background:var(--lime); }
 a.wcard:hover::before { height:100%; }
-a.wcard.g:hover .wcard-arrow { color:var(--green); transform:translate(3px,-3px); }
-a.wcard.l:hover .wcard-arrow { color:var(--lime);  transform:translate(3px,-3px); }
+a.wcard.g:hover .wcard-arrow { color:var(--green);  transform:translate(3px,-3px); }
+a.wcard.o:hover .wcard-arrow { color:var(--orange); transform:translate(3px,-3px); }
+a.wcard.l:hover .wcard-arrow { color:var(--lime);   transform:translate(3px,-3px); }
 
 /* coming soon card — div, not interactive */
 div.wcard {
@@ -321,9 +405,12 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
 <!-- ══ NAV ══ -->
 <nav id="nav">
   <a href="#home" class="nav-logo">
-    <img src="CIT2kwhitegreen.png" alt="ChanceIT Studio" class="logo-img">
+    <picture>
+      <source srcset="CIT-white-bg.png" media="(prefers-color-scheme: light)">
+      <img src="CIT-black-bg.png" alt="Chance IT Studio" class="logo-img">
+    </picture>
     <svg width="7" height="10" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;margin-left:-2px;margin-bottom:-4px;">
-      <polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="#ffffff"/>
+      <polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="var(--white)"/>
     </svg>
     <span class="logo-sub">Studio</span>
   </a>
@@ -382,7 +469,7 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
 <!-- ══ STRIP ══ -->
 <div class="strip">
   <div class="strip-cell"><div class="snum">4</div><div class="slabel">Projects Shipped</div></div>
-  <div class="strip-cell"><div class="snum">1</div><div class="slabel">SaaS Platform</div></div>
+  <div class="strip-cell"><div class="snum">2</div><div class="slabel">SaaS Platforms</div></div>
   <div class="strip-cell"><div class="snum">100<em>%</em></div><div class="slabel">Custom Code</div></div>
   <div class="strip-cell"><div class="snum">0</div><div class="slabel">Page Builders</div></div>
 </div>
@@ -453,19 +540,16 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
       </div>
     </a>
 
-    <!-- 4. SmokeSignal — Coming Soon (div, not a link) -->
-    <div class="wcard o reveal">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;">
-        <span class="wcard-tag">Dispatch · Contractors</span>
-        <span class="soon-badge">In Testing</span>
-      </div>
+    <!-- 4. SmokeSignal — live -->
+    <a class="wcard o reveal" href="https://smokesignaldispatch.com/landing" target="_blank" rel="noopener">
+      <span class="wcard-tag">Dispatch · Contractors</span>
       <div class="wcard-title">SmokeSignal — Field Dispatch & Crew Coordination</div>
       <p class="wcard-desc">Replacing group texts and phone-tag with a real dispatch system. Schedulers create jobs, assign crew by trade, and send structured notifications — job title, location link, start time, chief contact — in one tap. Built on WebSockets so the field and the office are always on the same page. Currently live with its first client, managing crews across multiple remote sites simultaneously.</p>
       <div class="wcard-foot">
         <div class="wcard-stack"><span>Vanilla JS</span><span>WebSockets</span><span>Supabase</span><span>Twilio</span></div>
-        <div class="wcard-soon-label">Coming Soon</div>
+        <div class="wcard-arrow">↗</div>
       </div>
-    </div>
+    </a>
 
   </div>
 </section>
@@ -560,8 +644,8 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
     <form class="cform reveal" id="cform" novalidate>
       <!-- Web3Forms access key — replace with yours from web3forms.com -->
       <input type="hidden" name="access_key" value="75aa6456-ed71-45be-a4ba-6037b67505bd">
-      <input type="hidden" name="subject" value="New Lead — ChanceIT Studio">
-      <input type="hidden" name="from_name" value="ChanceIT Studio Contact Form">
+      <input type="hidden" name="subject" value="New Lead — Chance IT Studio">
+      <input type="hidden" name="from_name" value="Chance IT Studio Contact Form">
       <input type="hidden" name="redirect" value="false">
 
       <!-- Honeypot: hidden from humans, bots fill it, submission dies -->
@@ -596,12 +680,15 @@ footer { padding:1.6rem 2.5rem; border-top:1px solid var(--border); background:v
 <!-- ══ FOOTER ══ -->
 <footer>
   <a href="#home" class="nav-logo" style="opacity:.65">
-    <img src="CIT2kwhitegreen.png" alt="ChanceIT Studio" class="logo-img">
+    <picture>
+      <source srcset="CIT-white-bg.png" media="(prefers-color-scheme: light)">
+      <img src="CIT-black-bg.png" alt="Chance IT Studio" class="logo-img">
+    </picture>
     <svg width="7" height="10" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;margin-left:-2px;margin-bottom:-3px;">
-      <polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="#ffffff"/>
+      <polygon points="0,0 0,22 5.5,16 10,26 13,24.5 8.5,14.5 16,14.5" fill="var(--white)"/>
     </svg>
   </a>
-  <div class="footer-copy">© 2026 ChanceIT Studio — Built in Illinois.</div>
+  <div class="footer-copy">© 2026 Chance IT Studio LLC — Built in Illinois.</div>
   <ul class="footer-links">
     <li><a href="https://github.com/CjCrump" target="_blank">GitHub</a></li>
     <li><a href="https://www.facebook.com/ChanceITstudio/">Facebook</a></li>
