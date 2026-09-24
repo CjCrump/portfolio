@@ -16,7 +16,9 @@
   function $(id) { return document.getElementById(id); }
   var av = {
     body: $('av-body'), head: $('av-head'), torso: $('av-torso'), collar: $('av-collar'),
-    eyes: $('av-eyes'), iris: $('av-iris'), strings: $('av-strings'),
+    strings: $('av-strings'), hair: $('svga-group-hair-front'),
+    eyeN: $('svga-group-eyes-left'), eyeF: $('svga-group-eyes-right'),
+    irisN: $('svga-group-eyesiriscontrol-left'), irisF: $('svga-group-eyesiriscontrol-right'),
     legF: $('av-legF'), shinF: $('av-shinF'), footF: $('av-footF'),
     legB: $('av-legB'), shinB: $('av-shinB'), footB: $('av-footB'),
     armF: $('av-armF'), foreF: $('av-foreF'), armB: $('av-armB'), foreB: $('av-foreB')
@@ -152,6 +154,35 @@
     runner.appendChild(d);
     setTimeout(function () { d.remove(); }, 600);
   }
+  /* Three-quarter head turn. The avatar head is drawn straight-on, so the face slides
+     toward the facing side, the far eye and brow narrow, and the far ear tucks behind the
+     face. Values are in the head's own 200-unit space; "left" there is the near side. */
+  function part(n) { return $('svga-group-' + n); }
+  var FACE = [
+    [part('eyes-left-move'), 8, 1, 0], [part('eyes-right-move'), 9, 0.78, 119],
+    [part('eyebrows-left-move'), 8, 1, 0], [part('eyebrows-right-move'), 9, 0.78, 122],
+    [part('glasses-single-move'), 8.5, 0.9, 100], [part('nose-single-move'), 12, 1, 0],
+    [part('mustache-single-move'), 9, 0.94, 100], [part('mouth-single-move'), 9, 0.94, 100],
+    [part('ears-left-move'), 4, 1, 0], [part('ears-right-move'), -13, 1, 0]
+  ].filter(function (f) { return f[0]; });
+  var turn = 0;
+  function turnHead(t) {
+    FACE.forEach(function (f) {
+      var sc = 1 - (1 - f[2]) * t, cx = f[3];
+      f[0].setAttribute('transform', 'translate(' + (f[1] * t).toFixed(2) + ' 0)' +
+        (sc < 1 ? ' translate(' + cx + ' 0) scale(' + sc.toFixed(3) + ' 1) translate(' + (-cx) + ' 0)' : ''));
+    });
+  }
+  // eye centers for blinking, measured once in the head's own units
+  function midY(el) { var b = el.getBBox(); return b.y + b.height / 2; }
+  var eyeCY = [midY(av.eyeN), midY(av.eyeF)];
+  function blink(on) {
+    [av.eyeN, av.eyeF].forEach(function (el, k) {
+      if (on) el.setAttribute('transform', 'translate(0 ' + eyeCY[k] + ') scale(1 .1) translate(0 ' + (-eyeCY[k]) + ')');
+      else el.removeAttribute('transform');
+    });
+  }
+
   function sayHi() { if (!reduce && amt < 0.2) waveT = 130; }
 
   function runAnim(speed) {
@@ -185,19 +216,25 @@
     av.body.setAttribute('transform', 'translate(0 ' + (-16 * a * Math.abs(s)).toFixed(2) + ') rotate(' + (7 * a).toFixed(2) + ' ' + FEET[0] + ' ' + FEET[1] + ')');
     av.torso.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
     av.collar.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
+    if (av.hair) av.hair.setAttribute('transform', 'translate(0 ' + (1.6 * a * Math.abs(c)).toFixed(2) + ')');
+
+    // face the camera more when idle or waving, more toward the run when running
+    turn += ((0.55 + 0.45 * a - 0.25 * wave) - turn) * 0.12;
+    turnHead(turn);
     tf(av.head, br * 2.5 + 4 * a * Math.abs(c), -5 * a + 2.5 * Math.sin(phase * 2) * a + 4 * wave, NECK);
     tf(av.strings, br * 1.5, -7 * a + 14 * a * Math.sin(phase * 2 + 0.8) + 3 * br, STRINGS);
 
     // eyes: look ahead when running, glance around when idle, blink every few seconds
     if (clock >= glanceAt) {
-      glanceTo = glanceTo ? 0 : (Math.random() < 0.5 ? -5 : 5);
+      glanceTo = glanceTo ? 0 : (Math.random() < 0.5 ? -2 : 2.5);
       glanceAt = clock + (glanceTo ? 50 : 200 + Math.random() * 220);
     }
-    glance += ((a > 0.2 || wave > 0.2 ? 4 * a : glanceTo) - glance) * 0.2;
-    av.iris.setAttribute('transform', 'translate(' + glance.toFixed(2) + ' 0)');
+    glance += ((a > 0.2 || wave > 0.2 ? 2 * a : glanceTo) - glance) * 0.2;
+    var g = 'translate(' + glance.toFixed(2) + ' 0)';
+    av.irisN.setAttribute('transform', g); av.irisF.setAttribute('transform', g);
     if (clock >= blinkAt) {
-      av.eyes.setAttribute('transform', 'translate(0 189) scale(1 .1) translate(0 -189)');
-      if (clock >= blinkAt + 7) { av.eyes.removeAttribute('transform'); blinkAt = clock + 150 + Math.random() * 180; }
+      blink(true);
+      if (clock >= blinkAt + 7) { blink(false); blinkAt = clock + 150 + Math.random() * 180; }
     }
 
     if (a > 0.6 && ++dustTick % 7 === 0) puff();
