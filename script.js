@@ -164,10 +164,13 @@
     [part('eyebrows-left-move'), 8, 1, 0], [part('eyebrows-right-move'), 4, 0.8, 122],
     [part('glasses-single-move'), 8.5, 0.86, 61.5], [part('nose-single-move'), 12, 1, 0],
     [part('mustache-single-move'), 9, 0.94, 100], [part('mouth-single-move'), 9, 0.94, 100],
-    [part('ears-left-move'), 4, 1, 0], [part('ears-right-move'), -13, 1, 0]
+    [part('ears-left-move'), 6, 1, 0], [part('ears-right-move'), -13, 1, 0],
+    [part('faceshape-wrap'), 3, 1, 0], [$('av-hairback'), -12, 1, 0]   // clone of the front hair, so it inherits its +4.5 slide
   ].filter(function (f) { return f[0]; });
-  var turn = 0;
+  var turn = 0, headSvg = part('head');
   function turnHead(t) {
+    // the whole head narrows a touch as it turns away from straight-on
+    headSvg.setAttribute('transform', 'translate(100 0) scale(' + (1 - 0.06 * t).toFixed(3) + ' 1) translate(-100 0)');
     FACE.forEach(function (f) {
       var sc = 1 - (1 - f[2]) * t, cx = f[3];
       f[0].setAttribute('transform', 'translate(' + (f[1] * t).toFixed(2) + ' 0)' +
@@ -225,7 +228,8 @@
     if (av.browN) { av.browN.setAttribute('transform', 'translate(0 ' + lift + ')'); av.browF.setAttribute('transform', 'translate(0 ' + lift + ')'); }
     av.torso.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
     av.collar.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
-    if (av.hair) av.hair.setAttribute('transform', 'translate(0 ' + (1.6 * a * Math.abs(c)).toFixed(2) + ')');
+    // hair sits between the skull and the face in depth, so it slides less than the face
+    if (av.hair) av.hair.setAttribute('transform', 'translate(' + (4.5 * turn).toFixed(2) + ' ' + (1.6 * a * Math.abs(c)).toFixed(2) + ')');
 
     // face the camera more when idle or waving, more toward the run when running
     turn += ((0.55 + 0.45 * a - 0.25 * wave) - turn) * 0.12;
