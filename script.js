@@ -13,11 +13,17 @@
   var tiles  = Array.prototype.slice.call(document.querySelectorAll('.tile'));
   var deck   = document.getElementById('deck');
   var runner = document.getElementById('runner');
-  var legF = document.getElementById('legF'), legB = document.getElementById('legB'), arm = document.getElementById('arm');
+  function $(id) { return document.getElementById(id); }
+  var av = {
+    body: $('av-body'), head: $('av-head'), torso: $('av-torso'), eyes: $('av-eyes'),
+    legF: $('av-legF'), shinF: $('av-shinF'), legB: $('av-legB'), shinB: $('av-shinB'),
+    armF: $('av-armF'), foreF: $('av-foreF'), armB: $('av-armB'), foreB: $('av-foreB')
+  };
   var rwBtn = document.getElementById('rw'), ffBtn = document.getElementById('ff');
   var dotsWrap = document.getElementById('navDots'), label = document.getElementById('navLabel');
   var hint = document.getElementById('hint');
-  var glow = document.querySelector('.acc-glow');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.bg-slide'));
+  var slideImgs = slides.map(function (sl) { return sl.querySelector('.bg-img'); });
 
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -35,17 +41,16 @@
   function geo() {
     W = stage.clientWidth; H = stage.clientHeight;
     cx = W / 2;
-    avatarY = H - Math.max(64, H * 0.10);
-    var top = 16, bot = avatarY - 46;
+    var dh = deck.offsetHeight || 110;
+    avatarY = H - Math.max(70, dh / 2 + 22);
+    var top = 16, bot = avatarY - dh / 2 - 10;
     apexY = (top + bot) / 2;
     var zoneH = Math.max(220, bot - top);
     root.style.setProperty('--zoneh', zoneH + 'px');
+    lastBgRot = null;
     R = Math.max(H * 0.72, W * 0.52);
     cy = apexY + R;
     deck.style.left = cx + 'px'; deck.style.top = avatarY + 'px';
-
-    var headerPx = parseFloat(getComputedStyle(root).getPropertyValue('--header')) || 54;
-    if (glow) { glow.style.left = cx + 'px'; glow.style.top = (headerPx + (bot + avatarY) / 2) + 'px'; }
   }
 
   /* ---------- state ---------- */
@@ -100,19 +105,69 @@
       el.style.pointerEvents = (i === act && Math.abs(th) < STEP * 0.5) ? 'auto' : 'none';
     }
     if (act !== lastActive) { lastActive = act; onActive(act); }
+    placeBg();
   }
 
-  /* ---------- runner ---------- */
-  function runAnim(speed) {
-    if (speed > 0.004 && !reduce) {
-      phase += Math.min(speed, 0.6) * 8;
-      var sw = Math.sin(phase) * 32;
-      legF.style.transform = 'rotate(' + sw + 'deg)';
-      legB.style.transform = 'rotate(' + (-sw) + 'deg)';
-      arm.style.transform  = 'rotate(' + (-sw * 0.7) + 'deg)';
-    } else {
-      legF.style.transform = 'rotate(8deg)'; legB.style.transform = 'rotate(-8deg)'; arm.style.transform = 'rotate(0deg)';
+  /* ---------- background: a filmstrip locked to the wheel ---------- */
+  var lastBgRot = null;
+  function placeBg() {
+    if (rot === lastBgRot) return;
+    lastBgRot = rot;
+    var span = window.innerWidth * 1.04;
+    for (var i = 0; i < slides.length; i++) {
+      var u = norm(rot + i * STEP) / STEP, sl = slides[i];
+      if (Math.abs(u) >= 1) { sl.style.visibility = 'hidden'; continue; }
+      sl.style.visibility = 'visible';
+      sl.style.transform = 'translate3d(' + (u * span).toFixed(1) + 'px,0,0)';
+      slideImgs[i].style.transform = 'translate3d(' + (-u * span * 0.35).toFixed(1) + 'px,0,0)';
     }
+  }
+  slides.forEach(function (sl) {
+    var src = sl.getAttribute('data-bg');
+    if (!src) return;
+    var im = new Image();
+    im.onload = function () { sl.style.setProperty('--img', 'url("' + src + '")'); sl.classList.add('has-img'); };
+    im.src = src;
+  });
+
+  /* ---------- runner ---------- */
+  var amt = 0, clock = 0, blinkAt = 90, dustTick = 0;
+  function rotA(el, deg, x, y) { el.setAttribute('transform', 'rotate(' + deg.toFixed(1) + ' ' + x + ' ' + y + ')'); }
+  function puff() {
+    var d = document.createElement('span');
+    d.className = 'dust';
+    d.style.setProperty('--dx', (-10 - Math.random() * 12).toFixed(0) + 'px');
+    d.style.marginLeft = (-8 + Math.random() * 6).toFixed(0) + 'px';
+    runner.appendChild(d);
+    setTimeout(function () { d.remove(); }, 600);
+  }
+  function runAnim(speed) {
+    clock++;
+    var want = reduce ? 0 : Math.min(1, speed * 14);
+    amt += (want - amt) * 0.12;
+    if (amt > 0.03) phase += 0.1 + Math.min(speed, 0.6) * 5;
+
+    var s = Math.sin(phase), c = Math.cos(phase), a = amt;
+    var breathe = (1 - a) * Math.sin(clock / 38) * 0.5;
+    // legs: forward swing is a negative rotation (figure faces right); knees fold on the upswing
+    rotA(av.legF, -32 * s * a, 32, 62);  rotA(av.shinF, (6 + 62 * Math.max(0, c)) * a, 32, 77.5);
+    rotA(av.legB,  32 * s * a, 32, 62);  rotA(av.shinB, (6 + 62 * Math.max(0, -c)) * a, 32, 77.5);
+    // arms counter-swing, elbows bent while running
+    rotA(av.armF,  38 * s * a, 32, 44);  rotA(av.foreF, -8 - 72 * a, 32, 54.5);
+    rotA(av.armB, -38 * s * a, 32, 44);  rotA(av.foreB, -8 - 72 * a, 32, 54.5);
+    // whole body: lean into the run and bob on each stride
+    var bob = -2.2 * Math.abs(s) * a;
+    av.body.setAttribute('transform', 'translate(0 ' + (bob + breathe * 0.4).toFixed(2) + ') rotate(' + (9 * a).toFixed(1) + ' 32 98)');
+    av.head.setAttribute('transform', 'translate(0 ' + breathe.toFixed(2) + ') rotate(' + (-4 * a + 2 * s * a).toFixed(1) + ' 32.5 40)');
+    av.torso.setAttribute('transform', 'translate(0 ' + (breathe * 0.5).toFixed(2) + ')');
+    // blink every few seconds
+    if (clock >= blinkAt) {
+      av.eyes.setAttribute('transform', 'translate(0 23.2) scale(1 .12) translate(0 -23.2)');
+      if (clock >= blinkAt + 7) { av.eyes.removeAttribute('transform'); blinkAt = clock + 150 + Math.random() * 180; }
+    }
+    // kick up dust at full tilt
+    if (a > 0.6 && ++dustTick % 7 === 0) puff();
+
     runner.style.transform = 'scaleX(' + dir + ')';
   }
 
@@ -277,6 +332,22 @@
         .catch(function () { st('✕ Network error. Check your connection.', true); })
         .finally(function () { btn.disabled = false; btn.textContent = 'Send it →'; });
     });
+  }
+
+  /* ---------- latest blog post (static fallback lives in the HTML) ---------- */
+  var latest = document.getElementById('latest');
+  if (latest && window.fetch) {
+    fetch('blog/data/posts.json')
+      .then(function (r) { return r.json(); })
+      .then(function (posts) {
+        posts.sort(function (a, b) { return b.date.localeCompare(a.date); });
+        var p = posts[0]; if (!p) return;
+        var d = new Date(p.date + 'T12:00:00');
+        latest.href = '/blog/posts/' + p.slug + '.html';
+        document.getElementById('latestTitle').textContent = p.title;
+        document.getElementById('latestDate').textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      })
+      .catch(function () {});
   }
 
   /* ---------- init ---------- */

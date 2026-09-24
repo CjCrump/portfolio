@@ -58,7 +58,21 @@
 </head>
 <body>
 
-<div class="acc-glow"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75L3 17.25zm17.7-10.2a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></symbol>
+</svg>
+
+<!-- BACKGROUND: one slide per section, slides with the wheel.
+     To add a photo, give the slide data-bg="img/bg/<name>.webp" (landscape, ~1920px wide). -->
+<div class="bg" id="bg" aria-hidden="true">
+  <div class="bg-slide" style="--sa:var(--green)"><div class="bg-img"></div><span class="bg-num">01</span></div>
+  <div class="bg-slide" style="--sa:var(--cyan)"><div class="bg-img"></div><span class="bg-num">02</span></div>
+  <div class="bg-slide" style="--sa:var(--orange)"><div class="bg-img"></div><span class="bg-num">03</span></div>
+  <div class="bg-slide" style="--sa:var(--lime)"><div class="bg-img"></div><span class="bg-num">04</span></div>
+  <div class="bg-slide" style="--sa:var(--magenta)"><div class="bg-img"></div><span class="bg-num">05</span></div>
+  <div class="bg-slide" style="--sa:var(--green)"><div class="bg-img"></div><span class="bg-num">06</span></div>
+  <div class="grain"></div>
+</div>
 
 <!-- ============================ HEADER ============================ -->
 <header>
@@ -79,7 +93,7 @@
   </nav>
 
   <div class="h-right">
-    <a class="soc" href="/blog/" aria-label="Blog">Blog</a>
+    <a class="soc" href="/blog/" aria-label="Blog" title="Blog"><svg><use href="#i-pen"/></svg></a>
     <a class="soc" href="https://github.com/CjCrump" target="_blank" rel="noopener" aria-label="GitHub">
       <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
     </a>
@@ -101,7 +115,7 @@
       <span class="eyebrow">Solo developer · Illinois</span>
       <h1 class="hero-name">CHANCE<br><span class="g">CRUMP</span></h1>
       <p class="role">Web development · Workflow automation</p>
-      <p class="lead">I build software for small businesses that are running on group texts and paper forms. You end up with a system that takes care of the busywork and catches the jobs that used to slip through.</p>
+      <p class="lead">I build software for small businesses that still run on group texts and paper forms. You get a system that handles the busywork and catches the jobs that used to slip through.</p>
       <div class="cta-row">
         <a class="btn btn-fill" href="#contact" data-go="5">Start a project</a>
         <a class="btn btn-line" href="#work" data-go="2">See the work</a>
@@ -112,11 +126,19 @@
     <section class="tile" id="about" aria-label="About">
       <span class="eyebrow">About</span>
       <h2 class="sh">Who's behind it.</h2>
-      <p class="lead">Self-taught developer and journeyman laborer out of Illinois. I swapped my first GPU at 14 and kept going. What I bring is sound judgment about what to build and the habit of finishing it. I use modern AI tools to move faster.</p>
+      <p class="lead">Self-taught developer and journeyman laborer out of Illinois. I swapped my first GPU at 14 and never stopped taking things apart. I know what's worth building, and I finish what I start. AI tools help me move faster. The judgment calls are still mine.</p>
       <p class="lead">Each project grew out of the last one. A dice roller turned into a session tracker. A scheduler became a transaction platform, and a texting headache became a live dispatch system.</p>
       <div class="chips">
         <span>JavaScript</span><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span><span>WebSockets</span><span>PWA</span><span>Cloudflare</span>
       </div>
+      <a class="latest" id="latest" href="/blog/posts/turning-the-homelab-into-a-portfolio.html">
+        <svg class="latest-ic" aria-hidden="true"><use href="#i-pen"/></svg>
+        <span class="latest-body">
+          <span class="latest-k">Latest from the blog · <span id="latestDate">Aug 31</span></span>
+          <span class="latest-t" id="latestTitle">Turning the Homelab Into a Portfolio</span>
+        </span>
+        <span class="latest-arrow" aria-hidden="true">→</span>
+      </a>
     </section>
 
     <!-- 2 · WORK -->
@@ -176,11 +198,11 @@
     <!-- 5 · CONTACT -->
     <section class="tile" id="contact" aria-label="Contact">
       <span class="eyebrow">Get in touch</span>
-      <h2 class="sh">Get started.</h2>
+      <h2 class="sh">Tell me what's broken.</h2>
       <p class="lead">Got a slow process or a tool that doesn't exist yet? I reply within one business day. Usually sooner.</p>
       <form class="cform" id="cform" novalidate>
         <input type="hidden" name="access_key" value="75aa6456-ed71-45be-a4ba-6037b67505bd">
-        <input type="hidden" name="subject" value="New Lead — Chance IT Studio">
+        <input type="hidden" name="subject" value="New lead: Chance IT Studio">
         <input type="hidden" name="from_name" value="Chance IT Studio Contact Form">
         <input type="hidden" name="redirect" value="false">
         <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
@@ -200,7 +222,7 @@
       <div class="contact-links">
         <a class="clink" href="https://github.com/CjCrump" target="_blank" rel="noopener">GitHub</a>
         <a class="clink" href="https://www.facebook.com/ChanceITstudio/" target="_blank" rel="noopener">Facebook</a>
-        <a class="clink" href="https://chanceitstudio.com" target="_blank" rel="noopener">chanceitstudio.com</a>
+        <a class="clink" href="/blog/">Blog</a>
       </div>
       <div class="copy">© 2026 Chance IT Studio LLC. Built in Illinois.</div>
     </section>
@@ -213,14 +235,37 @@
       <svg viewBox="0 0 24 24"><path d="M11 6v12l-8-6zM21 6v12l-8-6z"/></svg>
     </button>
 
-    <!-- AVATAR — placeholder until sprite sheet arrives. JS drives run speed + facing. -->
+    <!-- AVATAR: jointed SVG rig. script.js drives the run cycle, lean, blink and facing. -->
     <div class="runner" id="runner" aria-hidden="true">
-      <svg width="40" height="50" viewBox="0 0 24 30">
-        <circle cx="12" cy="5" r="3.6" fill="#eeeeff"/>
-        <rect x="10.3" y="8.2" width="3.4" height="10" rx="1.5" fill="#eeeeff"/>
-        <rect id="arm"  x="11" y="9.2" width="2.6" height="7" rx="1.3" fill="#00cc7a"/>
-        <rect class="leg" id="legB" x="10.6" y="17.4" width="2.8" height="9.4" rx="1.4" fill="#9a9ab2"/>
-        <rect class="leg" id="legF" x="10.6" y="17.4" width="2.8" height="9.4" rx="1.4" fill="#eeeeff"/>
+      <svg viewBox="0 -6 64 106">
+      <g id="av-body" stroke="#2a1d16" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
+        <g id="av-armB"><path d="M29 44 L33 44 L34 55 L30 55Z" fill="#3f7322"/><g id="av-foreB"><path d="M30 54 L34 54 L34 63 L30 63Z" fill="#3f7322"/><circle cx="32" cy="65" r="2.6" fill="#e0a888"/></g></g>
+        <g id="av-legB"><path d="M28 62 L36 62 L35.2 78 L29 78Z" fill="#2f3b58"/><g id="av-shinB"><path d="M29 77 L35.2 77 L34.6 92 L29.8 92Z" fill="#2f3b58"/><path d="M29.3 91 L34.6 91 Q39.5 91.5 40 95 L40 97.5 L29.3 97.5Z" fill="#6e4622"/><path d="M29.3 96 L40 96 L40 98 L29.3 98Z" fill="#2a1d16"/></g></g>
+        <g id="av-torso">
+          <path d="M23 44 Q23 39.5 29 39.3 L37 39.3 Q42 39.5 42.5 44 L43 62 Q43 65.5 38.5 65.5 L27 65.5 Q22.5 65.5 22.5 62Z" fill="#5a9431"/>
+          <path d="M22.6 60 L43 60 L43 62 Q43 65.5 38.5 65.5 L27 65.5 Q22.5 65.5 22.5 62Z" fill="#4c8229"/>
+          <path d="M26 40 Q24 36 28 35 L37 35 Q40 36 39 40" fill="#4c8229"/>
+          <path d="M35 41 L35.6 50 M37.4 41 L38 49.5" stroke="#d9d9d9" stroke-width=".9" fill="none"/>
+        </g>
+        <g id="av-legF"><path d="M28 62 L36 62 L35.2 78 L29 78Z" fill="#3b4a6b"/><g id="av-shinF"><path d="M29 77 L35.2 77 L34.6 92 L29.8 92Z" fill="#3b4a6b"/><path d="M29.3 91 L34.6 91 Q39.5 91.5 40 95 L40 97.5 L29.3 97.5Z" fill="#8a5a2b"/><path d="M29.3 96 L40 96 L40 98 L29.3 98Z" fill="#2a1d16"/></g></g>
+        <g id="av-head">
+          <path d="M30 36 L30 41 L35 41 L35 36Z" fill="#e0a888"/>
+          <path d="M21 22 Q21 8 34 8 Q47 8 47 23 Q47 32 42 36 Q38 39.5 33 39.5 Q27 39 24 35 Q21 31 21 22Z" fill="#f2c4a5"/>
+          <ellipse cx="22.5" cy="25" rx="3" ry="4" fill="#f2c4a5"/>
+          <path d="M21 25 Q18 16 20.5 9 Q22 3 27 2 Q27.5 -3 31 -1.5 Q33 -6.5 36.5 -2.5 Q40 -6 42.5 -1.5 Q47 -3.5 47 1.5 Q51 3 49.5 7 Q51 11 47.5 15.5 Q46.5 12 43 12 Q36 13.8 30 12 Q27.2 15.5 26.8 21.5 Q25.5 19.5 23.8 20.8 Q22.5 22.5 21 25Z" fill="#6b4a35"/>
+          <path d="M26 5 Q31 1 36 2 M31 -.5 Q37 -2 41.5 1.5 M38 5.5 Q43 3.5 47.5 6 M24 10 Q27 7.5 30 8" stroke="#8a634a" fill="none" stroke-width=".8"/>
+          <path d="M27.5 19 Q31 17.3 34.5 18.6 M38.6 18.6 Q42 17.5 45 18.6" stroke="#6b4a35" stroke-width="2" fill="none"/>
+          <rect x="26" y="19.8" width="10" height="6.6" rx="1.6" fill="#cfe4f2" stroke="#1b1b1b" stroke-width="1.5"/>
+          <rect x="38.2" y="19.8" width="7.6" height="6.6" rx="1.6" fill="#cfe4f2" stroke="#1b1b1b" stroke-width="1.5"/>
+          <path d="M36 22.2 L38.2 22.2 M26 22 L22.5 23" stroke="#1b1b1b" stroke-width="1.4"/>
+          <g id="av-eyes" stroke="none"><circle cx="31.5" cy="23.2" r="1.5" fill="#3f78b8"/><circle cx="42" cy="23.2" r="1.3" fill="#3f78b8"/><circle cx="31.9" cy="22.8" r=".45" fill="#fff"/><circle cx="42.3" cy="22.8" r=".4" fill="#fff"/></g>
+          <path d="M41.5 27 Q44 29.4 41.6 30.4" fill="none" stroke="#c98f6e" stroke-width=".9"/>
+          <path d="M32.5 34.6 Q31 33 32.8 31.9 Q37 30.4 41 31.2 Q44.8 31.6 45.2 34 Q43.5 32.9 41.2 33 Q37 32.6 32.5 34.6Z" fill="#6b4a35"/>
+          <path d="M33.6 34.8 Q38.5 33.3 43.6 33.9 Q43 38.8 38.4 39 Q34.6 38.8 33.6 34.8Z" fill="#fff"/>
+          <path d="M35.2 37.4 Q38.6 39.3 42 37.2 Q40.5 38.9 38.4 38.9 Q36.3 38.8 35.2 37.4Z" fill="#e2735f" stroke="none"/>
+        </g>
+        <g id="av-armF"><path d="M29 44 L35 44 L35.5 55 L29.5 55Z" fill="#5a9431"/><g id="av-foreF"><path d="M29.8 54 L35.2 54 L35 63 L30 63Z" fill="#5a9431"/><path d="M30 61.5 L35 61.5 L35 63.5 L30 63.5Z" fill="#4c8229"/><circle cx="32.5" cy="65.5" r="2.7" fill="#f2c4a5"/></g></g>
+      </g>
       </svg>
     </div>
 
@@ -229,7 +274,7 @@
     </button>
   </div>
 
-  <div class="hint" id="hint">swipe, drag, arrows, or hold ◄◄ ►►</div>
+  <div class="hint" id="hint">spin it: swipe, drag, or arrow keys</div>
 </main>
 
 <script src="script.js" defer></script>
