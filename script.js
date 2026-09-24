@@ -177,7 +177,7 @@
         (sc < 1 ? ' translate(' + cx + ' 0) scale(' + sc.toFixed(3) + ' 1) translate(' + (-cx) + ' 0)' : ''));
     });
     // near temple: from the frame's hinge (which slides with the face) back to the ear
-    if (av.temple) av.temple.setAttribute('d', 'M' + (61.5 + 8.5 * t).toFixed(2) + ' 89.6 L' + (52 + 4 * t).toFixed(2) + ' 92');
+    if (av.temple) av.temple.setAttribute('d', 'M' + (61.5 + 8.5 * t).toFixed(2) + ' 89.6 L' + (52 + 6 * t).toFixed(2) + ' 92');
   }
   // eye centers for blinking, measured once in the head's own units
   function midY(el) { var b = el.getBBox(); return b.y + b.height / 2; }
