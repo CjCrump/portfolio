@@ -193,8 +193,8 @@ header{
   position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:55;
   display:flex; align-items:center; gap:clamp(16px,4vw,40px);
 }
-.runner{position:relative; width:clamp(62px,7.5vw,88px)}
-.runner svg{display:block; width:100%; height:auto; overflow:visible}
+.runner{position:relative}
+.runner svg{display:block; height:clamp(128px,19vh,172px); width:auto; overflow:visible}
 .runner::after{content:''; position:absolute; left:50%; bottom:-6px; width:110%; height:12px; transform:translateX(-50%); z-index:-1;
   background:radial-gradient(ellipse, color-mix(in srgb,var(--acc) 55%,transparent) 0%, transparent 70%); opacity:.6; transition:background .35s}
 .dust{position:absolute; bottom:0; left:50%; width:7px; height:7px; border-radius:50%; pointer-events:none;

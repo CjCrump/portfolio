@@ -15,8 +15,10 @@
   var runner = document.getElementById('runner');
   function $(id) { return document.getElementById(id); }
   var av = {
-    body: $('av-body'), head: $('av-head'), torso: $('av-torso'), eyes: $('av-eyes'),
-    legF: $('av-legF'), shinF: $('av-shinF'), legB: $('av-legB'), shinB: $('av-shinB'),
+    body: $('av-body'), head: $('av-head'), torso: $('av-torso'), collar: $('av-collar'),
+    eyes: $('av-eyes'), iris: $('av-iris'), strings: $('av-strings'),
+    legF: $('av-legF'), shinF: $('av-shinF'), footF: $('av-footF'),
+    legB: $('av-legB'), shinB: $('av-shinB'), footB: $('av-footB'),
     armF: $('av-armF'), foreF: $('av-foreF'), armB: $('av-armB'), foreB: $('av-foreB')
   };
   var rwBtn = document.getElementById('rw'), ffBtn = document.getElementById('ff');
@@ -130,9 +132,18 @@
     im.src = src;
   });
 
-  /* ---------- runner ---------- */
-  var amt = 0, clock = 0, blinkAt = 90, dustTick = 0;
-  function rotA(el, deg, x, y) { el.setAttribute('transform', 'rotate(' + deg.toFixed(1) + ' ' + x + ' ' + y + ')'); }
+  /* ---------- runner ----------
+     Rig pivots are in the SVG's own units (see the avatar markup in index.html).
+     The figure faces right; a positive rotation swings a hanging limb backward. */
+  var HIP = [215, 552], KNEE = [217, 695], ANKLE = [217, 826], SHOULDER = [230, 360], ELBOW = [228, 462],
+      NECK = [200, 330], STRINGS = [209, 363], FEET = [215, 872];
+  var amt = 0, clock = 0, blinkAt = 90, dustTick = 0, sx = 1;
+  var wave = 0, waveT = 0, glance = 0, glanceTo = 0, glanceAt = 240;
+
+  function mix(a, b, t) { return a + (b - a) * t; }
+  function tf(el, dy, deg, pv) {
+    el.setAttribute('transform', 'translate(0 ' + dy.toFixed(2) + ') rotate(' + deg.toFixed(2) + ' ' + pv[0] + ' ' + pv[1] + ')');
+  }
   function puff() {
     var d = document.createElement('span');
     d.className = 'dust';
@@ -141,35 +152,62 @@
     runner.appendChild(d);
     setTimeout(function () { d.remove(); }, 600);
   }
+  function sayHi() { if (!reduce && amt < 0.2) waveT = 130; }
+
   function runAnim(speed) {
     clock++;
-    var want = reduce ? 0 : Math.min(1, speed * 14);
-    amt += (want - amt) * 0.12;
+    amt += ((reduce ? 0 : Math.min(1, speed * 14)) - amt) * 0.12;
     if (amt > 0.03) phase += 0.1 + Math.min(speed, 0.6) * 5;
+    if (amt > 0.3) waveT = 0;
+    if (waveT > 0) waveT--;
+    wave += ((waveT > 0 ? 1 : 0) - wave) * 0.14;
 
-    var s = Math.sin(phase), c = Math.cos(phase), a = amt;
-    var breathe = (1 - a) * Math.sin(clock / 38) * 0.5;
-    // legs: forward swing is a negative rotation (figure faces right); knees fold on the upswing
-    rotA(av.legF, -32 * s * a, 32, 62);  rotA(av.shinF, (6 + 62 * Math.max(0, c)) * a, 32, 77.5);
-    rotA(av.legB,  32 * s * a, 32, 62);  rotA(av.shinB, (6 + 62 * Math.max(0, -c)) * a, 32, 77.5);
-    // arms counter-swing, elbows bent while running
-    rotA(av.armF,  38 * s * a, 32, 44);  rotA(av.foreF, -8 - 72 * a, 32, 54.5);
-    rotA(av.armB, -38 * s * a, 32, 44);  rotA(av.foreB, -8 - 72 * a, 32, 54.5);
-    // whole body: lean into the run and bob on each stride
-    var bob = -2.2 * Math.abs(s) * a;
-    av.body.setAttribute('transform', 'translate(0 ' + (bob + breathe * 0.4).toFixed(2) + ') rotate(' + (9 * a).toFixed(1) + ' 32 98)');
-    av.head.setAttribute('transform', 'translate(0 ' + breathe.toFixed(2) + ') rotate(' + (-4 * a + 2 * s * a).toFixed(1) + ' 32.5 40)');
-    av.torso.setAttribute('transform', 'translate(0 ' + (breathe * 0.5).toFixed(2) + ')');
-    // blink every few seconds
+    var a = amt, s = Math.sin(phase), c = Math.cos(phase);
+    var br = (1 - a) * Math.sin(clock / 42);                 // idle breathing, -1..1
+
+    // legs: thigh swing, knee folds on the forward swing, toe points down on push-off
+    tf(av.legF, 0, -34 * s * a, HIP);
+    tf(av.shinF, 0, a * (10 + 75 * Math.pow(Math.max(0, c), 1.4)), KNEE);
+    tf(av.footF, 0, a * (22 * Math.max(0, -s) - 10 * Math.max(0, s)), ANKLE);
+    tf(av.legB, 0, 34 * s * a, HIP);
+    tf(av.shinB, 0, a * (10 + 75 * Math.pow(Math.max(0, -c), 1.4)), KNEE);
+    tf(av.footB, 0, a * (22 * Math.max(0, s) - 10 * Math.max(0, -s)), ANKLE);
+
+    // arms counter-swing with bent elbows; the front arm blends into a wave
+    var armRun = 40 * s * a, foreRun = -(12 + 72 * a) + 12 * c * a;
+    var waveFore = -14 + 26 * Math.sin(clock * 0.3);
+    tf(av.armF, br * 1.5, mix(armRun, -160, wave), SHOULDER);
+    tf(av.foreF, 0, mix(foreRun, waveFore, wave), ELBOW);
+    tf(av.armB, br * 1.5, -40 * s * a, SHOULDER);
+    tf(av.foreB, 0, foreRun, ELBOW);
+
+    // body: lean into the run, bob each stride; head counters the lean and bounces a beat late
+    av.body.setAttribute('transform', 'translate(0 ' + (-16 * a * Math.abs(s)).toFixed(2) + ') rotate(' + (7 * a).toFixed(2) + ' ' + FEET[0] + ' ' + FEET[1] + ')');
+    av.torso.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
+    av.collar.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
+    tf(av.head, br * 2.5 + 4 * a * Math.abs(c), -5 * a + 2.5 * Math.sin(phase * 2) * a + 4 * wave, NECK);
+    tf(av.strings, br * 1.5, -7 * a + 14 * a * Math.sin(phase * 2 + 0.8) + 3 * br, STRINGS);
+
+    // eyes: look ahead when running, glance around when idle, blink every few seconds
+    if (clock >= glanceAt) {
+      glanceTo = glanceTo ? 0 : (Math.random() < 0.5 ? -5 : 5);
+      glanceAt = clock + (glanceTo ? 50 : 200 + Math.random() * 220);
+    }
+    glance += ((a > 0.2 || wave > 0.2 ? 4 * a : glanceTo) - glance) * 0.2;
+    av.iris.setAttribute('transform', 'translate(' + glance.toFixed(2) + ' 0)');
     if (clock >= blinkAt) {
-      av.eyes.setAttribute('transform', 'translate(0 23.2) scale(1 .12) translate(0 -23.2)');
+      av.eyes.setAttribute('transform', 'translate(0 189) scale(1 .1) translate(0 -189)');
       if (clock >= blinkAt + 7) { av.eyes.removeAttribute('transform'); blinkAt = clock + 150 + Math.random() * 180; }
     }
-    // kick up dust at full tilt
+
     if (a > 0.6 && ++dustTick % 7 === 0) puff();
 
-    runner.style.transform = 'scaleX(' + dir + ')';
+    // turning around squashes through zero instead of snapping
+    sx = reduce ? dir : sx + (dir - sx) * 0.3;
+    runner.style.transform = 'scaleX(' + sx.toFixed(3) + ')';
   }
+  runner.addEventListener('pointerenter', sayHi);
+  setTimeout(sayHi, 700);
 
   /* ---------- loop ---------- */
   function frame() {
@@ -186,7 +224,7 @@
     } else if (mode === 'snap') {
       var dd = (target - rot) * (reduce ? 0.4 : 0.16);
       rot += dd; speed = Math.abs(dd) * 4; if (Math.abs(dd) > 0.0008) face(dd < 0);
-      if (Math.abs(target - rot) < 0.0005) { rot = target; vel = 0; speed = 0; mode = 'rest'; }
+      if (Math.abs(target - rot) < 0.0005) { rot = target; vel = 0; speed = 0; mode = 'rest'; if (activeIndex() === N - 1) setTimeout(sayHi, 250); }
     }
     runAnim(speed);
     place();

@@ -235,37 +235,109 @@
       <svg viewBox="0 0 24 24"><path d="M11 6v12l-8-6zM21 6v12l-8-6z"/></svg>
     </button>
 
-    <!-- AVATAR: jointed SVG rig. script.js drives the run cycle, lean, blink and facing. -->
+    <!-- AVATAR: jointed SVG rig traced from the avatar reference. script.js drives running, waving, blinking and facing. -->
     <div class="runner" id="runner" aria-hidden="true">
-      <svg viewBox="0 -6 64 106">
-      <g id="av-body" stroke="#2a1d16" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
-        <g id="av-armB"><path d="M29 44 L33 44 L34 55 L30 55Z" fill="#3f7322"/><g id="av-foreB"><path d="M30 54 L34 54 L34 63 L30 63Z" fill="#3f7322"/><circle cx="32" cy="65" r="2.6" fill="#e0a888"/></g></g>
-        <g id="av-legB"><path d="M28 62 L36 62 L35.2 78 L29 78Z" fill="#2f3b58"/><g id="av-shinB"><path d="M29 77 L35.2 77 L34.6 92 L29.8 92Z" fill="#2f3b58"/><path d="M29.3 91 L34.6 91 Q39.5 91.5 40 95 L40 97.5 L29.3 97.5Z" fill="#6e4622"/><path d="M29.3 96 L40 96 L40 98 L29.3 98Z" fill="#2a1d16"/></g></g>
+      <svg viewBox="60 20 280 860">
+        <g id="av-body">
+        <g id="av-backarm-wrap" transform="translate(-74 4)"><g id="av-armB">
+        <path d="M204 372 C202 352 216 344 230 344 C246 346 256 356 254 374 L250 468 C238 478 216 478 206 468Z" fill="#4a7c22" stroke="#335e14" stroke-width="4"/>
+        <g id="av-foreB">
+        <path d="M207 456 L249 456 L246 540 C236 546 220 546 210 540Z" fill="#4a7c22" stroke="#335e14" stroke-width="4"/>
+        <path d="M209 530 L247 530 L246 556 C236 561 220 561 210 556Z" fill="#416f1d" stroke="#335e14" stroke-width="4"/>
+        <path d="M212 552 C206 572 212 590 228 592 C244 592 250 578 246 552Z" fill="#e5ab88" stroke="#c98560" stroke-width="3"/>
+        </g>
+        </g></g>
+        <g transform="translate(-26 0)"><g id="av-legB">
+        <path d="M183 545 L248 545 L242 698 C230 708 204 708 192 698Z" fill="#30507e" stroke="#1f3558" stroke-width="4"/>
+        <g id="av-shinB">
+        <path d="M193 688 L241 688 L238 818 L196 818Z" fill="#30507e" stroke="#1f3558" stroke-width="4"/>
+        <path d="M194 806 L240 806 L241 826 L193 826Z" fill="#284470" stroke="#1f3558" stroke-width="4"/>
+        <g id="av-footB">
+        <path d="M194 818 L240 818 C242 832 250 838 262 840 C280 843 286 852 286 862 L192 862Z" fill="#8a5424" stroke="#5e3713" stroke-width="3.5"/>
+        <path d="M189 860 L289 860 C291 868 287 872 282 872 L192 872 C188 870 188 864 189 860Z" fill="#2e211b"/>
+        </g>
+        </g>
+        </g></g>
+        <g id="av-legF">
+        <path d="M183 545 L248 545 L242 698 C230 708 204 708 192 698Z" fill="#3d6197" stroke="#233c63" stroke-width="4"/>
+        <path d="M234 560 L229 690" fill="none" stroke="#2c4a78" stroke-width="2.5" stroke-linecap="round"/>
+        <g id="av-shinF">
+        <path d="M193 688 L241 688 L238 818 L196 818Z" fill="#3d6197" stroke="#233c63" stroke-width="4"/>
+        <path d="M200 700 C212 706 226 706 236 700" fill="none" stroke="#2c4a78" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M194 806 L240 806 L241 826 L193 826Z" fill="#33558a" stroke="#233c63" stroke-width="4"/>
+        <g id="av-footF">
+        <path d="M194 818 L240 818 C242 832 250 838 262 840 C280 843 286 852 286 862 L192 862Z" fill="#b0733a" stroke="#6f431c" stroke-width="3.5"/>
+        <path d="M256 840 C278 842 286 852 286 862 L264 862 C264 852 262 846 256 840Z" fill="#96602c"/>
+        <path d="M222 826 L240 831 M224 836 L248 840" stroke="#f1e3c2" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M189 860 L289 860 C291 868 287 872 282 872 L192 872 C188 870 188 864 189 860Z" fill="#3b2a22"/>
+        </g>
+        </g>
+        </g>
         <g id="av-torso">
-          <path d="M23 44 Q23 39.5 29 39.3 L37 39.3 Q42 39.5 42.5 44 L43 62 Q43 65.5 38.5 65.5 L27 65.5 Q22.5 65.5 22.5 62Z" fill="#5a9431"/>
-          <path d="M22.6 60 L43 60 L43 62 Q43 65.5 38.5 65.5 L27 65.5 Q22.5 65.5 22.5 62Z" fill="#4c8229"/>
-          <path d="M26 40 Q24 36 28 35 L37 35 Q40 36 39 40" fill="#4c8229"/>
-          <path d="M35 41 L35.6 50 M37.4 41 L38 49.5" stroke="#d9d9d9" stroke-width=".9" fill="none"/>
+        <path d="M124 374 C108 338 136 308 172 316 L172 345 C158 348 140 358 124 374Z" fill="#4a7c22" stroke="#335e14" stroke-width="4"/>
+        <path d="M120 372 C128 352 150 344 175 342 L240 341 C266 342 290 354 296 376 C302 412 303 470 299 520 L297 560 C244 569 168 569 110 563 L106 520 C102 470 106 412 120 372Z" fill="#5e9131" stroke="#3a6b17" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M122 382 C112 420 111 490 114 540 L138 542 C133 490 134 420 144 374Z" fill="#4d7f24" opacity=".75"/>
+        <path d="M200 470 C236 466 268 466 294 470 L295 535 C256 538 214 538 188 536 C200 515 204 490 200 470Z" fill="#568a2b" stroke="#3a6b17" stroke-width="3.5" stroke-linejoin="round"/>
+        <path d="M108 540 C168 547 244 547 298 540 L297 562 C244 570 168 570 110 564Z" fill="#528529" stroke="#3a6b17" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M135 548 L135 562 M160 549 L160 565 M185 550 L185 566 M210 550 L210 566 M235 550 L235 566 M260 549 L260 565 M282 547 L282 562" stroke="#467a22" stroke-width="2"/>
         </g>
-        <g id="av-legF"><path d="M28 62 L36 62 L35.2 78 L29 78Z" fill="#3b4a6b"/><g id="av-shinF"><path d="M29 77 L35.2 77 L34.6 92 L29.8 92Z" fill="#3b4a6b"/><path d="M29.3 91 L34.6 91 Q39.5 91.5 40 95 L40 97.5 L29.3 97.5Z" fill="#8a5a2b"/><path d="M29.3 96 L40 96 L40 98 L29.3 98Z" fill="#2a1d16"/></g></g>
         <g id="av-head">
-          <path d="M30 36 L30 41 L35 41 L35 36Z" fill="#e0a888"/>
-          <path d="M21 22 Q21 8 34 8 Q47 8 47 23 Q47 32 42 36 Q38 39.5 33 39.5 Q27 39 24 35 Q21 31 21 22Z" fill="#f2c4a5"/>
-          <ellipse cx="22.5" cy="25" rx="3" ry="4" fill="#f2c4a5"/>
-          <path d="M21 25 Q18 16 20.5 9 Q22 3 27 2 Q27.5 -3 31 -1.5 Q33 -6.5 36.5 -2.5 Q40 -6 42.5 -1.5 Q47 -3.5 47 1.5 Q51 3 49.5 7 Q51 11 47.5 15.5 Q46.5 12 43 12 Q36 13.8 30 12 Q27.2 15.5 26.8 21.5 Q25.5 19.5 23.8 20.8 Q22.5 22.5 21 25Z" fill="#6b4a35"/>
-          <path d="M26 5 Q31 1 36 2 M31 -.5 Q37 -2 41.5 1.5 M38 5.5 Q43 3.5 47.5 6 M24 10 Q27 7.5 30 8" stroke="#8a634a" fill="none" stroke-width=".8"/>
-          <path d="M27.5 19 Q31 17.3 34.5 18.6 M38.6 18.6 Q42 17.5 45 18.6" stroke="#6b4a35" stroke-width="2" fill="none"/>
-          <rect x="26" y="19.8" width="10" height="6.6" rx="1.6" fill="#cfe4f2" stroke="#1b1b1b" stroke-width="1.5"/>
-          <rect x="38.2" y="19.8" width="7.6" height="6.6" rx="1.6" fill="#cfe4f2" stroke="#1b1b1b" stroke-width="1.5"/>
-          <path d="M36 22.2 L38.2 22.2 M26 22 L22.5 23" stroke="#1b1b1b" stroke-width="1.4"/>
-          <g id="av-eyes" stroke="none"><circle cx="31.5" cy="23.2" r="1.5" fill="#3f78b8"/><circle cx="42" cy="23.2" r="1.3" fill="#3f78b8"/><circle cx="31.9" cy="22.8" r=".45" fill="#fff"/><circle cx="42.3" cy="22.8" r=".4" fill="#fff"/></g>
-          <path d="M41.5 27 Q44 29.4 41.6 30.4" fill="none" stroke="#c98f6e" stroke-width=".9"/>
-          <path d="M32.5 34.6 Q31 33 32.8 31.9 Q37 30.4 41 31.2 Q44.8 31.6 45.2 34 Q43.5 32.9 41.2 33 Q37 32.6 32.5 34.6Z" fill="#6b4a35"/>
-          <path d="M33.6 34.8 Q38.5 33.3 43.6 33.9 Q43 38.8 38.4 39 Q34.6 38.8 33.6 34.8Z" fill="#fff"/>
-          <path d="M35.2 37.4 Q38.6 39.3 42 37.2 Q40.5 38.9 38.4 38.9 Q36.3 38.8 35.2 37.4Z" fill="#e2735f" stroke="none"/>
+        <path d="M165 280 L237 280 L235 338 C215 346 185 346 167 338Z" fill="#f3c6a5" stroke="#d58a64" stroke-width="3"/>
+        <path d="M166 290 C185 312 215 312 236 290 L236 320 C215 334 185 334 166 320Z" fill="#e2a585"/>
+        <path d="M122 180 C100 172 96 200 104 220 C110 236 122 238 130 232Z" fill="#f3c6a5" stroke="#d58a64" stroke-width="4"/>
+        <path d="M116 195 C108 202 110 215 120 222" fill="none" stroke="#e0a27f" stroke-width="3"/>
+        <path d="M278 180 C300 172 304 200 296 220 C290 236 278 238 270 232Z" fill="#f3c6a5" stroke="#d58a64" stroke-width="4"/>
+        <path d="M284 195 C292 202 290 215 280 222" fill="none" stroke="#e0a27f" stroke-width="3"/>
+        <path d="M128 140 C118 170 114 200 118 222 C122 245 135 265 155 290 C165 302 175 306 200 306 C225 306 235 302 245 290 C265 265 278 245 282 222 C286 200 282 170 272 140 C282 72 118 72 128 140Z" fill="#f3c6a5" stroke="#d58a64" stroke-width="4"/>
+        <clipPath id="av-faceclip"><path d="M128 140 C118 170 114 200 118 222 C122 245 135 265 155 290 C165 302 175 306 200 306 C225 306 235 302 245 290 C265 265 278 245 282 222 C286 200 282 170 272 140 C282 72 118 72 128 140Z"/></clipPath>
+        <path d="M122 190 C113 170 110 130 120 100 C124 88 130 80 136 76 C131 62 136 50 147 41 C145 50 147 56 152 58 C151 48 156 38 167 31 C164 42 166 50 172 54 C186 56 204 58 222 54 C240 58 262 66 272 84 C284 105 290 135 287 160 C286 172 283 182 280 190 C276 175 274 160 270 140 C266 120 262 108 255 102 C245 100 240 104 235 108 C228 112 220 118 215 121 C210 115 200 104 180 102 C160 102 145 112 138 122 C132 130 130 150 130 188Z" fill="#dc9c78" opacity=".55" transform="translate(2 8)" clip-path="url(#av-faceclip)"/>
+        <path d="M120 222 C124 245 136 262 150 280 C140 262 132 245 128 222Z M280 222 C276 245 264 262 250 280 C260 262 268 245 272 222Z" fill="#e8ad8a" opacity=".7"/>
+        <g id="av-eyes">
+        <path d="M140 191 C148 180 168 178 178 190 C168 199 150 200 140 191Z M260 191 C252 180 232 178 222 190 C232 199 250 200 260 191Z" fill="#fff"/>
+        <g id="av-iris">
+        <circle cx="158" cy="189" r="9" fill="#6d9fd6" stroke="#3e6aa3" stroke-width="1.5"/><circle cx="158" cy="189" r="4.2" fill="#1b2640"/><circle cx="161" cy="186" r="2.4" fill="#fff"/>
+        <circle cx="242" cy="189" r="9" fill="#6d9fd6" stroke="#3e6aa3" stroke-width="1.5"/><circle cx="242" cy="189" r="4.2" fill="#1b2640"/><circle cx="245" cy="186" r="2.4" fill="#fff"/>
         </g>
-        <g id="av-armF"><path d="M29 44 L35 44 L35.5 55 L29.5 55Z" fill="#5a9431"/><g id="av-foreF"><path d="M29.8 54 L35.2 54 L35 63 L30 63Z" fill="#5a9431"/><path d="M30 61.5 L35 61.5 L35 63.5 L30 63.5Z" fill="#4c8229"/><circle cx="32.5" cy="65.5" r="2.7" fill="#f2c4a5"/></g></g>
-      </g>
+        <path d="M139 191 C148 179 168 177 180 189 M261 191 C252 179 232 177 220 189" fill="none" stroke="#3a2420" stroke-width="2.6" stroke-linecap="round"/>
+        </g>
+        <path d="M193 208 C194 216 192 222 189 226" fill="none" stroke="#e3a27e" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M186 230 C186 238 196 240 200 237 C204 240 214 238 214 230 C212 225 208 224 206 227 C203 231 197 231 194 227 C192 224 188 225 186 230Z" fill="#e3a27e"/>
+        <defs><linearGradient id="av-lens" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3f0f8" stop-opacity=".25"/><stop offset=".7" stop-color="#b9c9ea" stop-opacity=".5"/><stop offset="1" stop-color="#e9b8c8" stop-opacity=".6"/></linearGradient></defs>
+        <rect x="125" y="179" width="71" height="41" rx="6" fill="url(#av-lens)" stroke="#1d1414" stroke-width="5"/>
+        <rect x="204" y="179" width="71" height="41" rx="6" fill="url(#av-lens)" stroke="#1d1414" stroke-width="5"/>
+        <path d="M124 180 L276 180" stroke="#1d1414" stroke-width="7" stroke-linecap="round"/>
+        <path d="M122 186 L110 189 M278 186 L290 189" stroke="#1d1414" stroke-width="5" stroke-linecap="round"/>
+        <path d="M128 170 C135 155 160 150 180 160 C182 164 178 168 172 166 C158 160 142 162 132 172Z M272 170 C265 155 240 150 220 160 C218 164 222 168 228 166 C242 160 258 162 268 172Z" fill="#6b4535" stroke="#54342a" stroke-width="1.5"/>
+        <path d="M122 190 C113 170 110 130 120 100 C124 88 130 80 136 76 C131 62 136 50 147 41 C145 50 147 56 152 58 C151 48 156 38 167 31 C164 42 166 50 172 54 C186 56 204 58 222 54 C240 58 262 66 272 84 C284 105 290 135 287 160 C286 172 283 182 280 190 C276 175 274 160 270 140 C266 120 262 108 255 102 C245 100 240 104 235 108 C228 112 220 118 215 121 C210 115 200 104 180 102 C160 102 145 112 138 122 C132 130 130 150 130 188Z" fill="#6a4535" stroke="#4e3024" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M150 100 C160 80 180 70 210 68 M175 98 C190 82 215 78 245 80 M205 108 C220 92 245 90 268 102 M140 92 C143 72 152 56 164 44 M232 66 C248 68 262 76 270 88" fill="none" stroke="#8a6250" stroke-width="3" stroke-linecap="round"/>
+        <path d="M126 112 C122 140 123 162 127 182 M279 118 C284 140 284 162 280 182" fill="none" stroke="#4e3024" stroke-width="3" stroke-linecap="round"/>
+        <path d="M168 256 C185 254 215 254 232 256 C230 272 216 284 200 284 C184 284 170 272 168 256Z" fill="#2b0d0d"/>
+        <path d="M182 278 C190 272 210 272 218 278 C212 283 190 283 182 278Z" fill="#e0707a"/>
+        <path d="M170 257 C186 255 214 255 230 257 C229 262 227 265 226 266 C210 264 190 264 174 266 C172 263 171 260 170 257Z" fill="#fff"/>
+        <path d="M170 262 C176 280 190 288 200 288 C210 288 224 280 230 262" fill="none" stroke="#e89a9a" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M157 262 C152 255 156 246 166 243 C178 238 192 238 200 243 C208 238 222 238 234 243 C244 246 248 255 243 262 C238 256 230 252 220 252 C212 252 205 254 200 254 C195 254 188 252 180 252 C170 252 162 256 157 262Z" fill="#6b4535" stroke="#54342a" stroke-width="2"/>
+        <path d="M170 246 C176 244 184 244 190 246 M210 246 C216 244 224 244 230 246" fill="none" stroke="#86594a" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M192 297 C197 300 203 300 208 297" fill="none" stroke="#e3a27e" stroke-width="2.4" stroke-linecap="round"/>
+        </g>
+        <g id="av-collar">
+        <path d="M150 350 C170 336 236 334 264 346 C271 355 268 364 259 367 C236 356 176 356 153 369 C145 365 144 356 150 350Z" fill="#5e9131" stroke="#3a6b17" stroke-width="4.5" stroke-linejoin="round"/>
+        </g>
+        <g id="av-strings">
+        <path d="M192 364 L189 426 M226 362 L230 422" stroke="#dfe3e3" stroke-width="5" stroke-linecap="round"/>
+        <path d="M189 418 L189 432 M230 414 L230 428" stroke="#b9bfbf" stroke-width="6.5" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(8 0)"><g id="av-armF">
+        <path d="M204 372 C202 352 216 344 230 344 C246 346 256 356 254 374 L250 468 C238 478 216 478 206 468Z" fill="#5e9131" stroke="#3a6b17" stroke-width="4"/>
+        <path d="M212 380 C210 410 210 440 212 462" fill="none" stroke="#4d7f24" stroke-width="3" stroke-linecap="round"/>
+        <g id="av-foreF">
+        <path d="M207 456 L249 456 L246 540 C236 546 220 546 210 540Z" fill="#5e9131" stroke="#3a6b17" stroke-width="4"/>
+        <path d="M209 530 L247 530 L246 556 C236 561 220 561 210 556Z" fill="#528529" stroke="#3a6b17" stroke-width="4"/>
+        <path d="M212 552 C206 572 212 590 228 592 C244 592 250 578 246 552Z" fill="#f3c6a5" stroke="#d58a64" stroke-width="3"/>
+        <path d="M244 560 C256 562 259 577 249 583 C245 580 244 572 244 566Z" fill="#f3c6a5" stroke="#d58a64" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M216 568 C222 570 230 570 236 568" fill="none" stroke="#e0a27f" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        </g></g>
+        </g>
       </svg>
     </div>
 
