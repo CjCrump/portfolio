@@ -5,8 +5,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#08080a; --surface:#101014; --s2:#17171e; --border:#1e1e28; --b2:#2a2a38;
-  --muted:#6a6a84; --muted2:#8a8aa6; --text:#c4c4d8; --white:#eeeeff;
+  --bg:#060a08; --surface:#0d1310; --s2:#141c17; --border:#1c2721; --b2:#28362d;
+  --muted:#6c7c72; --muted2:#8fa096; --text:#c9d4cd; --white:#f0f7f2;
+  /* one background tone per section: near-black up to deep forest and back, so the wheel wraps smoothly */
+  --tone0:#050a07; --tone1:#08130c; --tone2:#0c1c12; --tone3:#102619; --tone4:#0c1c12; --tone5:#08130c;
   --green:#00cc7a; --orange:#ff6b35; --lime:#b6e000; --cyan:#19d3ff; --magenta:#ff2e88;
   --acc:#00cc7a;
   --header:54px;
@@ -15,8 +17,9 @@
 
 @media (prefers-color-scheme: light){
   :root{
-    --bg:#f4f4f0; --surface:#ffffff; --s2:#ececE6; --border:#dcdcd4; --b2:#c4c4ba;
-    --muted:#88887e; --muted2:#5f5f56; --text:#33332e; --white:#111110;
+    --bg:#f3f6f3; --surface:#ffffff; --s2:#eaf1ec; --border:#d6e0d9; --b2:#bccbc1;
+    --muted:#7b897f; --muted2:#55625a; --text:#29322c; --white:#0d1410;
+    --tone0:#f6faf7; --tone1:#edf5ef; --tone2:#e2efe6; --tone3:#d6e8dc; --tone4:#e2efe6; --tone5:#edf5ef;
     --green:#00995c; --orange:#d94f1e; --lime:#6b8a00; --cyan:#0a86b8; --magenta:#c01f63;
     --acc:#00995c;
   }
@@ -32,12 +35,13 @@ body{
 .bg{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; background:var(--bg)}
 .bg-slide{
   position:absolute; inset:0; overflow:hidden; will-change:transform; visibility:hidden;
+  --sa:var(--green);
   --line:color-mix(in srgb, var(--sa) 7%, transparent);
   background:
     radial-gradient(ellipse 60% 55% at 50% 72%, color-mix(in srgb, var(--sa) 15%, transparent), transparent 70%),
     linear-gradient(var(--line) 1px, transparent 1px) 0 0/58px 58px,
     linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/58px 58px,
-    var(--bg);
+    var(--tone);
 }
 .bg-img{position:absolute; inset:-4% -12%; background:var(--img) center/cover no-repeat; opacity:0; transition:opacity .6s; filter:grayscale(1) contrast(1.15); will-change:transform}
 .has-img .bg-img{opacity:1}

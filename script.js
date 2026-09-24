@@ -5,7 +5,6 @@
   'use strict';
 
   var NAMES   = ['Home', 'About', 'Work', 'Services', 'Process', 'Contact'];
-  var ACCENTS = ['--green', '--cyan', '--orange', '--lime', '--magenta', '--green'];
   var N = NAMES.length, STEP = Math.PI * 2 / N, VIS = 1.40;
 
   var root   = document.documentElement;
@@ -79,13 +78,8 @@
   function stepN(d) { setTarget(activeIndex() + d); }
 
   /* ---------- theming + header ---------- */
-  function applyAccent(i) {
-    var v = getComputedStyle(root).getPropertyValue(ACCENTS[i]).trim();
-    if (v) root.style.setProperty('--acc', v);
-  }
   function onActive(i) {
     label.textContent = NAMES[i];
-    applyAccent(i);
     for (var k = 0; k < N; k++) dots[k].classList.toggle('on', k === i);
   }
 
