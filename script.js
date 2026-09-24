@@ -16,7 +16,8 @@
   function $(id) { return document.getElementById(id); }
   var av = {
     body: $('av-body'), head: $('av-head'), torso: $('av-torso'), collar: $('av-collar'),
-    strings: $('av-strings'), hair: $('svga-group-hair-front'),
+    hair: $('svga-group-hair-front'), temple: $('av-temple'),
+    browN: $('svga-group-eyebrows-left-rotate'), browF: $('svga-group-eyebrows-right-rotate'),
     eyeN: $('svga-group-eyes-left'), eyeF: $('svga-group-eyes-right'),
     irisN: $('svga-group-eyesiriscontrol-left'), irisF: $('svga-group-eyesiriscontrol-right'),
     legF: $('av-legF'), shinF: $('av-shinF'), footF: $('av-footF'),
@@ -138,7 +139,7 @@
      Rig pivots are in the SVG's own units (see the avatar markup in index.html).
      The figure faces right; a positive rotation swings a hanging limb backward. */
   var HIP = [215, 552], KNEE = [217, 695], ANKLE = [217, 826], SHOULDER = [230, 360], ELBOW = [228, 462],
-      NECK = [200, 330], STRINGS = [209, 363], FEET = [215, 872];
+      NECK = [200, 330], FEET = [215, 872];
   var amt = 0, clock = 0, blinkAt = 90, dustTick = 0, sx = 1;
   var wave = 0, waveT = 0, glance = 0, glanceTo = 0, glanceAt = 240;
 
@@ -159,9 +160,9 @@
      face. Values are in the head's own 200-unit space; "left" there is the near side. */
   function part(n) { return $('svga-group-' + n); }
   var FACE = [
-    [part('eyes-left-move'), 8, 1, 0], [part('eyes-right-move'), 9, 0.78, 119],
-    [part('eyebrows-left-move'), 8, 1, 0], [part('eyebrows-right-move'), 9, 0.78, 122],
-    [part('glasses-single-move'), 8.5, 0.9, 100], [part('nose-single-move'), 12, 1, 0],
+    [part('eyes-left-move'), 8, 1, 0], [part('eyes-right-move'), 3, 0.8, 119],
+    [part('eyebrows-left-move'), 8, 1, 0], [part('eyebrows-right-move'), 4, 0.8, 122],
+    [part('glasses-single-move'), 8.5, 0.86, 61.5], [part('nose-single-move'), 12, 1, 0],
     [part('mustache-single-move'), 9, 0.94, 100], [part('mouth-single-move'), 9, 0.94, 100],
     [part('ears-left-move'), 4, 1, 0], [part('ears-right-move'), -13, 1, 0]
   ].filter(function (f) { return f[0]; });
@@ -172,6 +173,8 @@
       f[0].setAttribute('transform', 'translate(' + (f[1] * t).toFixed(2) + ' 0)' +
         (sc < 1 ? ' translate(' + cx + ' 0) scale(' + sc.toFixed(3) + ' 1) translate(' + (-cx) + ' 0)' : ''));
     });
+    // near temple: from the frame's hinge (which slides with the face) back to the ear
+    if (av.temple) av.temple.setAttribute('d', 'M' + (61.5 + 8.5 * t).toFixed(2) + ' 89.6 L' + (52 + 4 * t).toFixed(2) + ' 92');
   }
   // eye centers for blinking, measured once in the head's own units
   function midY(el) { var b = el.getBBox(); return b.y + b.height / 2; }
@@ -206,14 +209,20 @@
 
     // arms counter-swing with bent elbows; the front arm blends into a wave
     var armRun = 40 * s * a, foreRun = -(12 + 72 * a) + 12 * c * a;
-    var waveFore = -14 + 26 * Math.sin(clock * 0.3);
-    tf(av.armF, br * 1.5, mix(armRun, -160, wave), SHOULDER);
+    var waveFore = -35 + 25 * Math.sin(clock * 0.3);   // arm out to the side, clear of the face
+    tf(av.armF, br * 1.5, mix(armRun, -125, wave), SHOULDER);
     tf(av.foreF, 0, mix(foreRun, waveFore, wave), ELBOW);
     tf(av.armB, br * 1.5, -40 * s * a, SHOULDER);
     tf(av.foreB, 0, foreRun, ELBOW);
 
     // body: lean into the run, bob each stride; head counters the lean and bounces a beat late
-    av.body.setAttribute('transform', 'translate(0 ' + (-16 * a * Math.abs(s)).toFixed(2) + ') rotate(' + (7 * a).toFixed(2) + ' ' + FEET[0] + ' ' + FEET[1] + ')');
+    // squash a touch as each foot lands, stretch through the stride
+    var squash = 1 - 0.035 * a * (1 - Math.abs(s));
+    av.body.setAttribute('transform', 'translate(0 ' + (-16 * a * Math.abs(s)).toFixed(2) + ') rotate(' + (7 * a).toFixed(2) + ' ' + FEET[0] + ' ' + FEET[1] + ')' +
+      ' translate(' + FEET[0] + ' ' + FEET[1] + ') scale(1 ' + squash.toFixed(3) + ') translate(' + (-FEET[0]) + ' ' + (-FEET[1]) + ')');
+    // brows lift for the wave and when he takes off
+    var lift = (-3 * wave - 1.5 * a).toFixed(2);
+    if (av.browN) { av.browN.setAttribute('transform', 'translate(0 ' + lift + ')'); av.browF.setAttribute('transform', 'translate(0 ' + lift + ')'); }
     av.torso.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
     av.collar.setAttribute('transform', 'translate(0 ' + (br * 1.5).toFixed(2) + ')');
     if (av.hair) av.hair.setAttribute('transform', 'translate(0 ' + (1.6 * a * Math.abs(c)).toFixed(2) + ')');
@@ -222,7 +231,6 @@
     turn += ((0.55 + 0.45 * a - 0.25 * wave) - turn) * 0.12;
     turnHead(turn);
     tf(av.head, br * 2.5 + 4 * a * Math.abs(c), -5 * a + 2.5 * Math.sin(phase * 2) * a + 4 * wave, NECK);
-    tf(av.strings, br * 1.5, -7 * a + 14 * a * Math.sin(phase * 2 + 0.8) + 3 * br, STRINGS);
 
     // eyes: look ahead when running, glance around when idle, blink every few seconds
     if (clock >= glanceAt) {
