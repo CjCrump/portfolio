@@ -60,6 +60,7 @@
     <h2>Samba doesn't travel with the pool either</h2>
     <p>Once ownership was sorted, I still couldn't log into the shares from any of the family's devices. Samba passwords live in a separate database, <code>passdb.tdb</code>, that has nothing to do with ZFS and doesn't move with it. Every user needed <code>smbpasswd -a</code> run again on the new box before their login worked. Not hard, just one more thing that isn't obvious until it bites you.</p>
 
+    <p><em>Update:</em> The i7 didn't stay the NAS. I picked up an i5-6500 box on a good deal, and it turned out to be the better fit for serving files. The i7 and its 32GB made more sense as a sandbox, so I swapped them. It now runs a game server and the dev container I work from.</p>
     <div class="post-cta">
       <p>With the NAS solid and the fleet doing real work, the last step was making it visible to people outside my house.</p>
       <a class="btn" href="/blog/posts/turning-the-homelab-into-a-portfolio.html">Read how it became a portfolio &rarr;</a>
