@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  var NAMES   = ['Home', 'About', 'Work', 'Services', 'Process', 'Contact'];
+  var NAMES   = ['Home', 'Work', 'Homelab', 'Stack', 'Blog', 'Contact'];
   var N = NAMES.length, STEP = Math.PI * 2 / N, VIS = 1.40;
 
   var root   = document.documentElement;
@@ -383,50 +383,24 @@
   });
   if (window.visualViewport) visualViewport.addEventListener('resize', geo);
 
-  /* ============================================================
-     CONTACT FORM — Web3Forms + spam protection
-     ============================================================ */
-  var form = document.getElementById('cform');
-  if (form) {
-    var status = document.getElementById('fstatus'), btn = document.getElementById('fsubmit'), loadTime = Date.now();
-    function getLog() { try { return JSON.parse(sessionStorage.getItem('_cit_sl') || '[]'); } catch (_) { return []; } }
-    function rec() { var l = getLog(); l.push(Date.now()); sessionStorage.setItem('_cit_sl', JSON.stringify(l.slice(-5))); }
-    function tooMany() { return getLog().filter(function (t) { return Date.now() - t < 36e5; }).length >= 3; }
-    function st(m, err) { status.textContent = m; status.style.color = err ? 'var(--orange)' : 'var(--acc)'; status.style.opacity = '1'; if (!err) setTimeout(function () { status.style.opacity = '0'; }, 6000); }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (form.querySelector('[name="botcheck"]').checked) return;
-      if (Date.now() - loadTime < 3000) return;
-      if (tooMany()) { st('✕ Too many submissions. Try again later.', true); return; }
-      var name = form.querySelector('[name="name"]').value.trim(),
-          email = form.querySelector('[name="email"]').value.trim(),
-          msg = form.querySelector('[name="message"]').value.trim();
-      if (!name || !email || !msg) { st('✕ Please fill in all fields.', true); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { st('✕ Check your email address.', true); return; }
-      if (msg.length < 20) { st('✕ Tell me a bit more about your project.', true); return; }
-      btn.disabled = true; btn.textContent = 'Sending…';
-      var data = new FormData(form); data.set('name', name); data.set('email', email); data.set('message', msg);
-      fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
-        .then(function (r) { return r.json(); })
-        .then(function (j) { if (j.success) { rec(); st("✓ Sent. I'll be in touch soon.", false); form.reset(); } else { st('✕ Something went wrong. Try again.', true); } })
-        .catch(function () { st('✕ Network error. Check your connection.', true); })
-        .finally(function () { btn.disabled = false; btn.textContent = 'Send it →'; });
-    });
-  }
-
-  /* ---------- latest blog post (static fallback lives in the HTML) ---------- */
-  var latest = document.getElementById('latest');
-  if (latest && window.fetch) {
+  /* ---------- blog list (static fallback lives in the HTML) ---------- */
+  var postList = document.getElementById('postList');
+  if (postList && window.fetch) {
     fetch('blog/data/posts.json')
       .then(function (r) { return r.json(); })
       .then(function (posts) {
+        if (!posts.length) return;
         posts.sort(function (a, b) { return b.date.localeCompare(a.date); });
-        var p = posts[0]; if (!p) return;
-        var d = new Date(p.date + 'T12:00:00');
-        latest.href = '/blog/posts/' + p.slug + '.html';
-        document.getElementById('latestTitle').textContent = p.title;
-        document.getElementById('latestDate').textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        postList.textContent = '';
+        posts.forEach(function (p) {
+          var li = document.createElement('li'), a = document.createElement('a'),
+              d = document.createElement('span'), t = document.createElement('span');
+          a.href = '/blog/posts/' + p.slug + '.html';
+          d.className = 'post-d';
+          d.textContent = new Date(p.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          t.className = 'post-t'; t.textContent = p.title;
+          a.appendChild(d); a.appendChild(t); li.appendChild(a); postList.appendChild(li);
+        });
       })
       .catch(function () {});
   }

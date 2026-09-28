@@ -97,134 +97,138 @@
     <a class="soc" href="https://github.com/CjCrump" target="_blank" rel="noopener" aria-label="GitHub">
       <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
     </a>
-    <a class="soc" href="https://www.facebook.com/ChanceITstudio/" target="_blank" rel="noopener" aria-label="Facebook">
-      <svg viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7v-3.5h3.1V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.2h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/></svg>
+    <a class="soc" href="https://www.linkedin.com/in/chance-crump" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
     </a>
-    <a class="h-cta" href="#contact" data-go="5">Start a project</a>
+    <a class="h-cta" href="#contact" data-go="5">Contact</a>
   </div>
 </header>
 
 <!-- ============================ STAGE / WHEEL ============================ -->
 <main class="stage" id="stage" tabindex="0" role="application"
-      aria-label="Chance IT Studio. Spin the wheel to move between sections. Swipe, drag, use the arrow keys or the dots up top, or hold the rewind and fast-forward buttons.">
+      aria-label="Chance Crump. Spin the wheel to move between sections. Swipe, drag, use the arrow keys or the dots up top, or hold the rewind and fast-forward buttons.">
 
   <div class="tiles" id="tiles">
 
-    <!-- 0 · HERO -->
+    <!-- 0 · HOME -->
     <section class="tile" id="hero" aria-label="Home">
-      <span class="eyebrow">Solo developer · Illinois</span>
+      <span class="eyebrow">Solutions engineer · St. Louis metro</span>
       <h1 class="hero-name">CHANCE<br><span class="g">CRUMP</span></h1>
-      <p class="role">Web development · Workflow automation</p>
-      <p class="lead">I build software for small businesses that still run on group texts and paper forms. You get a system that handles the busywork and catches the jobs that used to slip through.</p>
+      <p class="role">Solutions engineer who ships.</p>
+      <p class="lead"><b>3 web apps live for paying clients.</b> I sit down with the owner, find where the work actually breaks, show them a fix they can click through, then build it and keep it running.</p>
       <div class="cta-row">
-        <a class="btn btn-fill" href="#contact" data-go="5">Start a project</a>
-        <a class="btn btn-line" href="#work" data-go="2">See the work</a>
+        <!-- TODO: add Resume button once resume.pdf is in the repo root -->
+        <a class="btn btn-fill" href="#work" data-go="1">See the work</a>
+        <a class="btn btn-line" href="#contact" data-go="5">Contact</a>
       </div>
     </section>
 
-    <!-- 1 · ABOUT -->
-    <section class="tile" id="about" aria-label="About">
-      <span class="eyebrow">About</span>
-      <h2 class="sh">Who's behind it.</h2>
-      <p class="lead">Self-taught developer and journeyman laborer out of Illinois. I swapped my first GPU at 14 and never stopped taking things apart. I know what's worth building, and I finish what I start. AI tools help me move faster. The judgment calls are still mine.</p>
-      <p class="lead">Each project grew out of the last one. A dice roller turned into a session tracker. A scheduler became a transaction platform, and a texting headache became a live dispatch system.</p>
-      <div class="chips">
-        <span>JavaScript</span><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span><span>WebSockets</span><span>PWA</span><span>Cloudflare</span>
-      </div>
-      <a class="latest" id="latest" href="/blog/posts/turning-the-homelab-into-a-portfolio.html">
-        <svg class="latest-ic" aria-hidden="true"><use href="#i-pen"/></svg>
-        <span class="latest-body">
-          <span class="latest-k">Latest from the blog · <span id="latestDate">Aug 31</span></span>
-          <span class="latest-t" id="latestTitle">Turning the Homelab Into a Portfolio</span>
-        </span>
-        <span class="latest-arrow" aria-hidden="true">→</span>
-      </a>
-    </section>
-
-    <!-- 2 · WORK -->
+    <!-- 1 · WORK  (DRAFT copy: confirm with CJ) -->
     <section class="tile" id="work" aria-label="Work">
-      <span class="eyebrow">Selected work</span>
-      <h2 class="sh">Built &amp; shipped.</h2>
-      <div class="proj-grid">
-        <a class="proj" href="https://tcmvp.com" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-name">TCMVP</span><span class="proj-arrow">↗</span></div>
-          <p class="proj-desc">SaaS for real estate transaction coordinators. It tracks deadlines and reads contracts so nobody has to.</p>
+      <span class="eyebrow">Case studies</span>
+      <h2 class="sh">Scoped, built, shipped.</h2>
+      <div class="cases">
+        <article class="case">
+          <div class="proj-top"><span class="proj-name">TCMVP</span><a class="case-link" href="https://tcmvp.com" target="_blank" rel="noopener">tcmvp.com ↗</a></div>
+          <dl class="case-blks">
+            <div><dt>The problem</dt><dd>Transaction coordinators were missing contract deadlines. Contracts lived in too many places to keep straight.</dd></div>
+            <!-- TODO: What I asked -->
+            <div><dt>What I built and why</dt><dd>A SaaS that reads each contract, pulls out the dates, and emails the right team before each one is due.</dd></div>
+            <div><dt>Result</dt><dd>Every contract in one organized place. Deadlines reach the right people on their own.</dd></div>
+          </dl>
           <div class="proj-stack"><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span></div>
-        </a>
-        <a class="proj" href="https://smokesignaldispatch.com/landing" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-name">SmokeSignal</span><span class="proj-arrow">↗</span></div>
-          <p class="proj-desc">Real-time crew dispatch that replaces the group text. Running now with its first client.</p>
+        </article>
+        <article class="case">
+          <div class="proj-top"><span class="proj-name">SmokeSignal</span><a class="case-link" href="https://smokesignaldispatch.com/landing" target="_blank" rel="noopener">smokesignaldispatch.com ↗</a></div>
+          <dl class="case-blks">
+            <div><dt>The problem</dt><dd>A trades business dispatched its crews over a group text. Jobs slipped through.</dd></div>
+            <!-- TODO: What I asked -->
+            <div><dt>What I built and why</dt><dd>A live dispatch board that replaces the group text. WebSockets keep every screen current, and Twilio reaches the crew by text.</dd></div>
+            <div><dt>Result</dt><dd>Running now with its first client.</dd></div>
+          </dl>
           <div class="proj-stack"><span>WebSockets</span><span>Twilio</span></div>
-        </a>
-        <a class="proj" href="https://gloveson.chanceitstudio.com" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-name">GlovesOn</span><span class="proj-arrow">↗</span></div>
-          <p class="proj-desc">Offline jobsite app with a materials calculator and an overtime-aware time log. Big buttons for gloved hands. No account needed.</p>
-          <div class="proj-stack"><span>PWA</span><span>Vanilla JS</span></div>
-        </a>
-        <a class="proj" href="https://ttdice.chanceitstudio.com" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-name">TTDice</span><span class="proj-arrow">↗</span></div>
-          <p class="proj-desc">A fast, provably fair dice roller for tabletop games. It saves your presets and keeps stats across a session.</p>
-          <div class="proj-stack"><span>Vanilla JS</span><span>Supabase</span></div>
-        </a>
+        </article>
+        <article class="case">
+          <div class="proj-top"><span class="proj-name">Twin Rivers</span></div>
+          <dl class="case-blks">
+            <!-- TODO: The problem / What I asked / Result -->
+            <div><dt>What I built</dt><dd>A client website I built and still maintain.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <div class="side">
+        <span class="side-k">Side projects</span>
+        <a class="clink" href="https://gloveson.chanceitstudio.com" target="_blank" rel="noopener">GlovesOn: offline jobsite calculator and time log</a>
+        <a class="clink" href="https://ttdice.chanceitstudio.com" target="_blank" rel="noopener">TTDice: provably fair dice roller</a>
       </div>
     </section>
 
-    <!-- 3 · SERVICES -->
-    <section class="tile" id="services" aria-label="Services">
-      <span class="eyebrow">Services</span>
-      <h2 class="sh">What I build.</h2>
-      <div class="svc-grid">
-        <div class="svc"><span class="n">01</span><div><div class="nm">Custom web apps</div><div class="ds">Auth, billing, dashboards, real business logic.</div></div></div>
-        <div class="svc"><span class="n">02</span><div><div class="nm">Sites &amp; landing pages</div><div class="ds">Fast, hand-coded, yours to own.</div></div></div>
-        <div class="svc"><span class="n">03</span><div><div class="nm">Maintenance &amp; hosting</div><div class="ds">I keep it online and up to date.</div></div></div>
-        <div class="svc"><span class="n">04</span><div><div class="nm">Workflow automation</div><div class="ds">Find the step that slows your team down and automate it.</div></div></div>
-        <div class="svc"><span class="n">05</span><div><div class="nm">Custom system builds</div><div class="ds">Desktops and servers on Windows, Linux or Raspberry Pi.</div></div></div>
-        <div class="svc"><span class="n">06</span><div><div class="nm">Performance &amp; audits</div><div class="ds">A plain-English report on what's slow and why. No upsell.</div></div></div>
-      </div>
-    </section>
-
-    <!-- 4 · PROCESS -->
-    <section class="tile" id="process" aria-label="Process">
-      <span class="eyebrow">How it works</span>
-      <h2 class="sh">The process.</h2>
+    <!-- 2 · HOMELAB -->
+    <section class="tile" id="homelab" aria-label="Homelab">
+      <span class="eyebrow">Homelab</span>
+      <h2 class="sh">Three machines, all running.</h2>
+      <p class="lead">Built, broken and fixed at home. Every service runs from a Docker Compose file, and remote access goes through Tailscale instead of open ports.</p>
       <div class="steps">
-        <div class="step"><span class="n">01</span><div><div class="nm">Discovery call (free)</div><div class="ds">Walk me through how things run now. I'll find the real problem and let you know if it's worth building.</div></div></div>
-        <div class="step"><span class="n">02</span><div><div class="nm">Scoped proposal (flat rate)</div><div class="ds">A written scope and a fixed price. We both sign off before I start.</div></div></div>
-        <div class="step"><span class="n">03</span><div><div class="nm">Build &amp; review</div><div class="ds">You get working software to click through at every stage, not mockups.</div></div></div>
-        <div class="step"><span class="n">04</span><div><div class="nm">Deploy &amp; stick around</div><div class="ds">I deploy it, walk you through it, and stay reachable.</div></div></div>
+        <div class="step"><span class="n">01</span><div><div class="nm">nas-node · i7-4790K, 32GB</div><div class="ds">ZFS mirror on two 8TB IronWolf drives, shared over Samba. Taught me that ZFS tracks owners by UID, not username.</div></div></div>
+        <div class="step"><span class="n">02</span><div><div class="nm">hp-node · i3-8145U laptop, 8GB</div><div class="ds">Gitea, Vaultwarden and TeamSpeak behind Caddy. Taught me that a local CA only works once every client trusts it.</div></div></div>
+        <div class="step"><span class="n">03</span><div><div class="nm">desktop · Ryzen 5600G</div><div class="ds">Daily driver, and where the NAS started. Taught me not to keep shared storage on the machine I reboot most.</div></div></div>
       </div>
+      <div class="contact-links">
+        <a class="clink" href="https://github.com/CjCrump/homelab" target="_blank" rel="noopener">Repo, decision records and troubleshooting log</a>
+      </div>
+    </section>
+
+    <!-- 3 · STACK -->
+    <section class="tile" id="stack" aria-label="Stack">
+      <span class="eyebrow">Stack</span>
+      <h2 class="sh">What I work with.</h2>
+      <div class="stack-cols">
+        <div>
+          <div class="stack-h">Shipped with</div>
+          <div class="chips">
+            <span>JavaScript</span><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span><span>WebSockets</span><span>Twilio</span><span>Supabase</span><span>PWA</span><span>Cloudflare</span><span>Docker</span><span>Ansible</span><span>ZFS</span><span>Caddy</span><span>Tailscale</span>
+          </div>
+        </div>
+        <div>
+          <div class="stack-h">Learning now</div>
+          <ul class="stack-l">
+            <li>The Odin Project, backend path</li>
+            <li>AWS Cloud Practitioner</li>
+            <li>Next: AWS Solutions Architect Associate</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · BLOG  (script.js refreshes this list from blog/data/posts.json) -->
+    <section class="tile" id="blog" aria-label="Blog">
+      <span class="eyebrow">Blog</span>
+      <h2 class="sh">Notes from the build.</h2>
+      <ul class="posts" id="postList">
+        <li><a href="/blog/posts/turning-the-homelab-into-a-portfolio.html"><span class="post-d">Aug 31</span><span class="post-t">Turning the Homelab Into a Portfolio</span></a></li>
+        <li><a href="/blog/posts/rps-became-ttdice.html"><span class="post-d">Aug 26</span><span class="post-t">Why My Rock-Paper-Scissors Project Became a Dice Roller</span></a></li>
+        <li><a href="/blog/posts/calculator-became-gloveson.html"><span class="post-d">Aug 26</span><span class="post-t">The Course Calculator That Became a Jobsite Tool</span></a></li>
+        <li><a href="/blog/posts/moving-the-nas-off-my-desktop.html"><span class="post-d">Jul 18</span><span class="post-t">Moving the NAS Off My Desktop (And What ZFS Doesn't Tell You)</span></a></li>
+        <li><a href="/blog/posts/turning-a-dead-hp-laptop-into-a-server.html"><span class="post-d">Mar 27</span><span class="post-t">Turning a Dead HP Laptop Into a Server</span></a></li>
+        <li><a href="/blog/posts/finishing-foundations.html"><span class="post-d">Mar 5</span><span class="post-t">What Finishing Foundations Actually Taught Me. 1 yr later</span></a></li>
+        <li><a href="/blog/posts/why-i-started-a-homelab.html"><span class="post-d">Feb 10</span><span class="post-t">Why I Started a Homelab (And Why It Was Just a Samba Share)</span></a></li>
+      </ul>
+      <div class="contact-links"><a class="clink" href="/blog/">All posts</a></div>
     </section>
 
     <!-- 5 · CONTACT -->
     <section class="tile" id="contact" aria-label="Contact">
-      <span class="eyebrow">Get in touch</span>
-      <h2 class="sh">Tell me about your project.</h2>
-      <p class="lead">Walk me through what you're working with now and what you wish it did. I reply within one business day, usually sooner.</p>
-      <form class="cform" id="cform" novalidate>
-        <input type="hidden" name="access_key" value="75aa6456-ed71-45be-a4ba-6037b67505bd">
-        <input type="hidden" name="subject" value="New lead: Chance IT Studio">
-        <input type="hidden" name="from_name" value="Chance IT Studio Contact Form">
-        <input type="hidden" name="redirect" value="false">
-        <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
-        <div class="frow">
-          <div class="field"><label for="f-name">Name</label>
-            <input type="text" id="f-name" name="name" placeholder="Jane Smith" autocomplete="name" maxlength="100" required></div>
-          <div class="field"><label for="f-email">Email</label>
-            <input type="email" id="f-email" name="email" placeholder="jane@company.com" autocomplete="email" maxlength="200" required></div>
-        </div>
-        <div class="field"><label for="f-msg">Your project</label>
-          <textarea id="f-msg" name="message" placeholder="How it works today, where it breaks down, what you want it to do." maxlength="3000" required></textarea></div>
-        <div class="form-foot">
-          <button type="submit" class="btn btn-fill" id="fsubmit">Send it →</button>
-          <span id="fstatus"></span>
-        </div>
-      </form>
-      <div class="contact-links">
+      <span class="eyebrow">Contact</span>
+      <h2 class="sh">Let's talk.</h2>
+      <p class="lead">Hiring for a solutions, sales engineering or implementation role? I'd like to hear about it.</p>
+      <!-- TODO: Resume PDF and email (mailto:) links -->
+      <div class="contact-links contact-col">
+        <a class="clink" href="https://www.linkedin.com/in/chance-crump" target="_blank" rel="noopener">LinkedIn</a>
         <a class="clink" href="https://github.com/CjCrump" target="_blank" rel="noopener">GitHub</a>
-        <a class="clink" href="https://www.facebook.com/ChanceITstudio/" target="_blank" rel="noopener">Facebook</a>
         <a class="clink" href="/blog/">Blog</a>
       </div>
-      <div class="copy">© 2026 Chance IT Studio LLC. Built in Illinois.</div>
+      <p class="aside">Need a website or computer help? That's over at <a href="https://chanceitstudio.com/" target="_blank" rel="noopener">chanceitstudio.com</a>.</p>
+      <div class="copy">© 2026 Chance Crump. Built in Illinois.</div>
     </section>
 
   </div>
