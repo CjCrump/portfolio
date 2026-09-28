@@ -100,7 +100,7 @@
     <a class="soc" href="https://www.linkedin.com/in/chance-crump" target="_blank" rel="noopener" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
     </a>
-    <a class="h-cta" href="#contact" data-go="5">Contact</a>
+    <a class="h-cta" href="/Chance_Crump_Resume.pdf" target="_blank" rel="noopener">Resume</a>
   </div>
 </header>
 
@@ -115,44 +115,42 @@
       <span class="eyebrow">Solutions engineer · St. Louis metro</span>
       <h1 class="hero-name">CHANCE<br><span class="g">CRUMP</span></h1>
       <p class="role">Solutions engineer who ships.</p>
-      <p class="lead"><b>3 web apps live for paying clients.</b> I sit down with the owner, find where the work actually breaks, show them a fix they can click through, then build it and keep it running.</p>
+      <p class="lead"><b>3 web apps live for paying clients.</b> I sit down with the owner, find where the work actually breaks, show them a fix they can click through, then build it and keep it running. Before code I sold for an AT&amp;T retailer and finished top 3 in a record-setting store.</p>
       <div class="cta-row">
-        <!-- TODO: add Resume button once resume.pdf is in the repo root -->
-        <a class="btn btn-fill" href="#work" data-go="1">See the work</a>
-        <a class="btn btn-line" href="#contact" data-go="5">Contact</a>
+        <a class="btn btn-fill" href="/Chance_Crump_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="btn btn-line" href="#work" data-go="1">See the work</a>
       </div>
     </section>
 
-    <!-- 1 · WORK  (DRAFT copy: confirm with CJ) -->
+    <!-- 1 · WORK -->
     <section class="tile" id="work" aria-label="Work">
       <span class="eyebrow">Case studies</span>
       <h2 class="sh">Scoped, built, shipped.</h2>
       <div class="cases">
         <article class="case">
-          <div class="proj-top"><span class="proj-name">TCMVP</span><a class="case-link" href="https://tcmvp.com" target="_blank" rel="noopener">tcmvp.com ↗</a></div>
-          <dl class="case-blks">
-            <div><dt>The problem</dt><dd>Transaction coordinators were missing contract deadlines. Contracts lived in too many places to keep straight.</dd></div>
-            <!-- TODO: What I asked -->
-            <div><dt>What I built and why</dt><dd>A SaaS that reads each contract, pulls out the dates, and emails the right team before each one is due.</dd></div>
-            <div><dt>Result</dt><dd>Every contract in one organized place. Deadlines reach the right people on their own.</dd></div>
-          </dl>
-          <div class="proj-stack"><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span></div>
-        </article>
-        <article class="case">
           <div class="proj-top"><span class="proj-name">SmokeSignal</span><a class="case-link" href="https://smokesignaldispatch.com/landing" target="_blank" rel="noopener">smokesignaldispatch.com ↗</a></div>
           <dl class="case-blks">
-            <div><dt>The problem</dt><dd>A trades business dispatched its crews over a group text. Jobs slipped through.</dd></div>
-            <!-- TODO: What I asked -->
-            <div><dt>What I built and why</dt><dd>A live dispatch board that replaces the group text. WebSockets keep every screen current, and Twilio reaches the crew by text.</dd></div>
-            <div><dt>Result</dt><dd>Running now with its first client.</dd></div>
+            <div><dt>The problem</dt><dd>Dispatch ran on one-off texts and phone trees.</dd></div>
+            <div><dt>What I built</dt><dd>A live dispatch board that sends out a whole crew at the push of a button. WebSockets keep every screen current, and Twilio texts the crew.</dd></div>
+            <div><dt>Result</dt><dd>It runs a 98-tradesman roster. I co-own the product with the client.</dd></div>
           </dl>
-          <div class="proj-stack"><span>WebSockets</span><span>Twilio</span></div>
+          <div class="proj-stack"><span>WebSockets</span><span>Supabase</span><span>Twilio</span><span>Netlify</span></div>
         </article>
         <article class="case">
-          <div class="proj-top"><span class="proj-name">Twin Rivers</span></div>
+          <div class="proj-top"><span class="proj-name">TCMVP</span><a class="case-link" href="https://tcmvp.com" target="_blank" rel="noopener">tcmvp.com ↗</a></div>
           <dl class="case-blks">
-            <!-- TODO: The problem / What I asked / Result -->
-            <div><dt>What I built</dt><dd>A client website I built and still maintain.</dd></div>
+            <div><dt>The problem</dt><dd>A transaction coordinator and solo agent jumping through a different hoop for every deal.</dd></div>
+            <div><dt>What I built</dt><dd>Transaction management with Stripe billing, built alongside a working coordinator as the design partner.</dd></div>
+            <div><dt>Result</dt><dd>Every contract in one organized place. Deadlines get emailed to the right team automatically. No more missed deadlines.</dd></div>
+          </dl>
+          <div class="proj-stack"><span>Cloudflare Workers</span><span>Supabase</span><span>Stripe</span></div>
+        </article>
+        <article class="case">
+          <div class="proj-top"><span class="proj-name">Twin Rivers Concrete</span></div>
+          <dl class="case-blks">
+            <div><dt>The problem</dt><dd>No time to keep the site updated, and it looked good on a desktop but broke on phones.</dd></div>
+            <div><dt>What I built</dt><dd>A one-page site with a work gallery that stays fresh. I handle upkeep and pull new content from their Facebook. They just tag me in the post.</dd></div>
+            <div><dt>Result</dt><dd>It hasn't needed the owner's attention since launch, and the phone is still ringing.</dd></div>
           </dl>
         </article>
       </div>
@@ -166,8 +164,8 @@
     <!-- 2 · HOMELAB -->
     <section class="tile" id="homelab" aria-label="Homelab">
       <span class="eyebrow">Homelab</span>
-      <h2 class="sh">Three machines, all running.</h2>
-      <p class="lead">Built, broken and fixed at home. Every service runs from a Docker Compose file, and remote access goes through Tailscale instead of open ports.</p>
+      <h2 class="sh">Four nodes, all running.</h2>
+      <p class="lead">Built, broken and fixed at home. Every service runs from a Docker Compose file, Ansible bootstraps new nodes, and remote access goes through Tailscale instead of open ports. Local LLMs run on Ollama.</p>
       <div class="steps">
         <div class="step"><span class="n">01</span><div><div class="nm">nas-node · i7-4790K, 32GB</div><div class="ds">ZFS mirror on two 8TB IronWolf drives, shared over Samba. Taught me that ZFS tracks owners by UID, not username.</div></div></div>
         <div class="step"><span class="n">02</span><div><div class="nm">hp-node · i3-8145U laptop, 8GB</div><div class="ds">Gitea, Vaultwarden and TeamSpeak behind Caddy. Taught me that a local CA only works once every client trusts it.</div></div></div>
@@ -186,14 +184,15 @@
         <div>
           <div class="stack-h">Shipped with</div>
           <div class="chips">
-            <span>JavaScript</span><span>Node.js</span><span>PostgreSQL</span><span>Stripe</span><span>WebSockets</span><span>Twilio</span><span>Supabase</span><span>PWA</span><span>Cloudflare</span><span>Docker</span><span>Ansible</span><span>ZFS</span><span>Caddy</span><span>Tailscale</span>
+            <span>JavaScript</span><span>Node.js</span><span>Supabase (Postgres)</span><span>Cloudflare Workers</span><span>Netlify</span><span>Stripe</span><span>Twilio</span><span>WebSockets</span><span>PWA</span><span>Linux</span><span>Docker</span><span>Ansible</span><span>ZFS</span><span>Caddy</span><span>Tailscale</span><span>Ollama</span>
           </div>
         </div>
         <div>
           <div class="stack-h">Learning now</div>
           <ul class="stack-l">
-            <li>The Odin Project, backend path</li>
-            <li>AWS Cloud Practitioner</li>
+            <li>AWS Cloud Practitioner, testing October 2026</li>
+            <li>The Odin Project, Full Stack JavaScript</li>
+            <li>Associate of Science, Lewis and Clark, Spring 2027</li>
             <li>Next: AWS Solutions Architect Associate</li>
           </ul>
         </div>
@@ -221,8 +220,9 @@
       <span class="eyebrow">Contact</span>
       <h2 class="sh">Let's talk.</h2>
       <p class="lead">Hiring for a solutions, sales engineering or implementation role? I'd like to hear about it.</p>
-      <!-- TODO: Resume PDF and email (mailto:) links -->
       <div class="contact-links contact-col">
+        <a class="clink" href="mailto:chance@chanceitstudio.com">chance@chanceitstudio.com</a>
+        <a class="clink" href="/Chance_Crump_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
         <a class="clink" href="https://www.linkedin.com/in/chance-crump" target="_blank" rel="noopener">LinkedIn</a>
         <a class="clink" href="https://github.com/CjCrump" target="_blank" rel="noopener">GitHub</a>
         <a class="clink" href="/blog/">Blog</a>
