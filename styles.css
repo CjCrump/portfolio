@@ -164,13 +164,15 @@ header{
 .step .nm{font-size:.95rem; font-weight:700; color:var(--white); margin-bottom:.15rem}
 .step .ds{font-size:.77rem; line-height:1.5; color:var(--muted2)}
 
-.cases{display:flex; flex-direction:column; gap:.7rem; margin-top:.2rem}
-.case{display:flex; flex-direction:column; gap:.55rem; background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:.85rem .9rem}
+#work{gap:.7rem}
+#work .sh{font-size:clamp(1.8rem,3.4vw,2.8rem)}
+.cases{display:flex; flex-direction:column; gap:.5rem; margin-top:.1rem}
+.case{display:flex; flex-direction:column; gap:.4rem; background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:.7rem .85rem}
 .case-link{font-family:'DM Mono',monospace; font-size:.56rem; color:var(--muted); text-decoration:none; transition:color .2s}
 .case-link:hover{color:var(--acc)}
-.case-blks{display:grid; grid-template-columns:1fr 1fr; gap:.5rem 1rem; margin:0}
+.case-blks{display:grid; grid-template-columns:repeat(3,1fr); gap:.4rem .9rem; margin:0}
 .case-blks dt{font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.14em; text-transform:uppercase; color:var(--acc); margin-bottom:.15rem}
-.case-blks dd{margin:0; font-size:.77rem; line-height:1.5; color:var(--muted2)}
+.case-blks dd{margin:0; font-size:.72rem; line-height:1.42; color:var(--muted2)}
 .side{display:flex; flex-wrap:wrap; align-items:center; gap:.5rem 1rem}
 .side-k,.stack-h{font-family:'DM Mono',monospace; font-size:.54rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
 .stack-cols{display:grid; grid-template-columns:1.4fr 1fr; gap:1.4rem; margin-top:.2rem}
