@@ -1,102 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
-    <loc>https://chanceitstudio.com/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://chancecrump.dev/</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/#about</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://chanceitstudio.com/#work</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://chanceitstudio.com/#services</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://chanceitstudio.com/#process</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://chanceitstudio.com/#contact</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://chanceitstudio.com/blog/</loc>
+    <loc>https://chancecrump.dev/blog/</loc>
     <lastmod>2026-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/blog/posts/turning-the-homelab-into-a-portfolio.html</loc>
+    <loc>https://chancecrump.dev/blog/posts/turning-the-homelab-into-a-portfolio.html</loc>
     <lastmod>2026-08-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/blog/posts/rps-became-ttdice.html</loc>
+    <loc>https://chancecrump.dev/blog/posts/rps-became-ttdice.html</loc>
     <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/blog/posts/calculator-became-gloveson.html</loc>
+    <loc>https://chancecrump.dev/blog/posts/calculator-became-gloveson.html</loc>
     <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/blog/posts/moving-the-nas-off-my-desktop.html</loc>
+    <loc>https://chancecrump.dev/blog/posts/moving-the-nas-off-my-desktop.html</loc>
     <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/blog/posts/turning-a-dead-hp-laptop-into-a-server.html</loc>
+    <loc>https://chancecrump.dev/blog/posts/turning-a-dead-hp-laptop-into-a-server.html</loc>
     <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/blog/posts/finishing-foundations.html</loc>
+    <loc>https://chancecrump.dev/blog/posts/finishing-foundations.html</loc>
     <lastmod>2026-03-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://chanceitstudio.com/blog/posts/why-i-started-a-homelab.html</loc>
+    <loc>https://chancecrump.dev/blog/posts/why-i-started-a-homelab.html</loc>
     <lastmod>2026-02-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
-
 </urlset>
