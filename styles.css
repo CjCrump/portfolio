@@ -173,6 +173,8 @@ header{
 .case-blks{display:grid; grid-template-columns:repeat(3,1fr); gap:.4rem .9rem; margin:0}
 .case-blks dt{font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.14em; text-transform:uppercase; color:var(--acc); margin-bottom:.15rem}
 .case-blks dd{margin:0; font-size:.72rem; line-height:1.42; color:var(--muted2)}
+.case-quote{margin:0; padding-left:.6rem; border-left:2px solid var(--acc); font-size:.72rem; line-height:1.45; font-style:italic; color:var(--text)}
+.case-quote cite{display:block; margin-top:.2rem; font-family:'DM Mono',monospace; font-style:normal; font-size:.52rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
 .side{display:flex; flex-wrap:wrap; align-items:center; gap:.5rem 1rem}
 .side-k,.stack-h{font-family:'DM Mono',monospace; font-size:.54rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
 .stack-cols{display:grid; grid-template-columns:1.4fr 1fr; gap:1.4rem; margin-top:.2rem}
