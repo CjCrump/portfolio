@@ -1,6 +1,6 @@
-# Chance IT Studio Portfolio
+# Chance Crump Portfolio
 
-Personal developer portfolio and business site for Chance IT Studio.
+Personal developer portfolio for CJ Crump. The business site lives at chanceitstudio.com (separate repo).
 
 ## What it does
 
@@ -15,7 +15,7 @@ A single-page site built around a scrollable "wheel" of sections (hero, about, w
 
 ## Live demo
 
-https://chanceitstudio.com
+https://chancecrump.dev
 
 ## Screenshot
 
